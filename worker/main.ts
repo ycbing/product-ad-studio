@@ -4,6 +4,8 @@ import path from "node:path";
 import { spawn } from "node:child_process";
 import { setTimeout as delay } from "node:timers/promises";
 import { pool, transaction } from "../lib/db";
+import { PIPELINE_VERSION } from "../lib/production-version";
+import { assertSceneReady } from "../lib/scene-quality";
 import { validateSources } from "../lib/models";
 import { storagePath, prepareStorage } from "../lib/storage";
 import { probe, exec, mediaBinary } from "../lib/media";
@@ -27,9 +29,14 @@ async function update(job: any, progress: number, stage: string) {
   );
 }
 async function render(job: any) {
+  if (job.snapshot.pipelineVersion !== PIPELINE_VERSION)
+    throw Object.assign(Error("制作引擎版本已变化，请重新生成当前版本样片"), {
+      retryable: false,
+    });
   const p = job.snapshot.project;
   const assets = job.snapshot.assets;
   validateSources(p.shots, assets);
+  if (job.kind !== "voice") assertSceneReady(p, assets);
   const dir = path.join(root, ".local/jobs", job.id);
   for (const name of [
     "src",
@@ -51,6 +58,7 @@ async function render(job: any) {
       ? p.shots.filter((s: any) => s.id === job.shot_id)
       : p.shots;
   const shots = [];
+  const copiedSources = new Set<string>();
   let voiceArtifact: string | null = null;
   for (let i = 0; i < selected.length; i++) {
     const s = selected[i];
@@ -63,10 +71,18 @@ async function render(job: any) {
     if (!a) throw Error("原始素材不存在");
     const ext = path.extname(a.storage_key);
     const source = `media/${a.id}${ext}`;
-    await copyFile(
-      storagePath(a.storage_key),
-      path.join(dir, "public", source),
-    );
+    if (!copiedSources.has(a.id)) {
+      const bytes = await readFile(storagePath(a.storage_key));
+      const digest = createHash("sha256").update(bytes).digest("hex");
+      const expected = assets.find((asset: any) => asset.id === a.id)?.sha256;
+      if (!expected || digest !== expected)
+        throw Object.assign(
+          Error("原始素材内容已改变，与上传/核对记录不一致，请重新上传并标注"),
+          { retryable: false },
+        );
+      await writeFile(path.join(dir, "public", source), bytes);
+      copiedSources.add(a.id);
+    }
     const audio =
       p.ttsEnabled || job.kind === "voice"
         ? await speech(s.caption, job)
@@ -137,7 +153,13 @@ async function render(job: any) {
         sample: { from: 0, to: shots.reduce((n, s) => n + s.seconds, 0) },
       }),
     );
-    for (const name of ["web-entry.tsx", "web-story.tsx", "web-schema.ts"])
+    for (const name of [
+      "web-entry.tsx",
+      "web-story.tsx",
+      "web-schema.ts",
+      "web-layout.ts",
+      "scene-framing.ts",
+    ])
       await copyFile(
         path.join(root, "renderer/src", name),
         path.join(dir, "src", name === "web-entry.tsx" ? "index.tsx" : name),
@@ -231,6 +253,7 @@ async function render(job: any) {
         : "disabled",
       visualReview: "not-reviewed",
       fingerprint: report.fingerprint,
+      sourceQuality: assertSceneReady(p, assets),
     };
     try {
       const ffmpeg = mediaBinary("ffmpeg"),
@@ -242,6 +265,7 @@ async function render(job: any) {
           produced,
           ffmpeg.file,
           ffprobe.file,
+          p.productionMode ?? "presentation",
         ],
         { env: { ...ffmpeg.env }, timeout: 90000, maxBuffer: 2 * 1024 * 1024 },
       );
@@ -253,6 +277,13 @@ async function render(job: any) {
       };
     }
     if (
+      p.productionMode === "scene" &&
+      (checks.vvv?.status === "unavailable" || checks.vvv?.status === "failed")
+    )
+      throw Error(
+        "真实场景成片质量检查未通过或不可用，请检查静止画面、音轨和媒体环境；本次不会交付为成功成片",
+      );
+    if (
       checks.vvv?.checks?.some(
         (c: any) =>
           c.status === "failed" && ["AUDIO", "FORMAT"].includes(c.code),
@@ -260,6 +291,7 @@ async function render(job: any) {
     )
       throw Error("VVV 检查发现音频或画幅异常，请检查素材后重试");
   }
+  checks.pipelineVersion = PIPELINE_VERSION;
   const aid = randomUUID(),
     key = `artifacts/${aid}${job.kind === "voice" ? ".wav" : ".mp4"}`;
   await mkdir(storagePath("artifacts"), { recursive: true });
