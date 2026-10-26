@@ -1,0 +1,420 @@
+{
+  "parentRun": "2026-10-26",
+  "templateRevision": "title-safe-area-and-focal-point-v2",
+  "runId": "2026-10-26-revised",
+  "createdAt": "2026-10-26T03:51:43.697Z",
+  "status": "reviewed",
+  "pipeline": "real HTTP upload → saved project → rule concepts → custom storyboard → sample → test acknowledgement → full render",
+  "audio": "Same original synthesized music; narration disabled for this visual comparison. No paid AI calls.",
+  "approvalIsTestOnly": true,
+  "humanContinuousReview": false,
+  "results": [
+    {
+      "slug": "nintendo-switch",
+      "name": "Nintendo Switch（2017）",
+      "identity": "Confirmed by source descriptions; original 2017 model, not OLED or Switch 2",
+      "test": "宽幅设备、多个组件、透明 PNG 与 JPEG 混合",
+      "outputLicense": "Original validation arrangement; photos public domain",
+      "sources": [
+        {
+          "file": "switch-tablet.jpg",
+          "page": "https://commons.wikimedia.org/wiki/File:Nintendo-Switch-Console-Bare-FL.jpg",
+          "author": "Evan-Amos",
+          "license": "Public domain",
+          "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+          "sha256": "8db2096bb3e4929d9acac473a3b72fda9e359ebe87f42a82ae341aa59c00ca7f",
+          "bytes": 2716378,
+          "width": 4700,
+          "height": 3100,
+          "duration": null
+        },
+        {
+          "file": "switch-docked.png",
+          "page": "https://commons.wikimedia.org/wiki/File:Nintendo_Switch_Console.png",
+          "author": "Owen1962",
+          "license": "Public domain",
+          "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+          "sha256": "7add2ccaa705dfb4586fb7ef6089b3b305a1033fe6e9e326a57adbde617e2e9d",
+          "bytes": 1086832,
+          "width": 1700,
+          "height": 800,
+          "duration": null
+        }
+      ],
+      "status": "rendered",
+      "projectId": "2748b290-b49a-46bd-87cf-d7ce5bea9a0a",
+      "revision": 9,
+      "expectedSeconds": 15,
+      "sampleJobId": "bfe0c4af-444a-4a41-a62b-3ff50649ee59",
+      "renderJobId": "babaccc3-1109-41e1-bb6c-389014448a92",
+      "width": 1080,
+      "height": 1920,
+      "duration": 15.019,
+      "sha256": "a4b5a068500d21c132cf725e588f9f27d6da8b70d84e9428a60e184c6f4f46e3",
+      "checks": {
+        "vvv": {
+          "video": {
+            "fps": 30,
+            "width": 1080,
+            "height": 1920,
+            "durationSeconds": 15.019
+          },
+          "checks": [
+            {
+              "code": "FORMAT",
+              "status": "passed",
+              "message": "Frame is 1080×1920; the project format is 1080×1920."
+            },
+            {
+              "code": "RESOLUTION",
+              "status": "passed",
+              "message": "Short side is 1080px."
+            },
+            {
+              "code": "AUDIO",
+              "status": "passed",
+              "message": "Mean level -37.4 dBFS.",
+              "meanDbfs": -37.4,
+              "longestSilenceSeconds": 1
+            },
+            {
+              "code": "STILL",
+              "runs": [],
+              "status": "passed",
+              "message": "No still stretch longer than 3s.",
+              "stillShare": 0.78
+            }
+          ],
+          "limits": "Motion is measured as frame-to-frame change; grain or noise overlays can hide a frozen subject.",
+          "review": [
+            "The first three seconds give a reason to keep watching.",
+            "Each beat has one main thing to read, and text stays on screen long enough to read it.",
+            "Text is legible at phone size for the chosen format.",
+            "Names, dates and captions match the photos and the supplied facts.",
+            "The soundtrack suits the story, and its entry, exit and level work when listened to."
+          ],
+          "status": "passed"
+        },
+        "audio": "present",
+        "format": "passed",
+        "duration": "passed",
+        "fingerprint": "78d71f141a2f6e62e8824222f01fe076e17446f2b28c5d5b44c9acab4af14a13",
+        "visualReview": "not-reviewed"
+      },
+      "video": "nintendo-switch-1080p.mp4",
+      "sample": "nintendo-switch-sample.mp4",
+      "visualReview": {
+        "method": "Actual frames at 1, 4, 7, 10 and 13 seconds reviewed; not continuous playback or listening approval",
+        "assessment": "适合商品图展示；设备和组件未被裁切，但镜头变化有限，不能替代真实操作演示。",
+        "input": "2 张有明确来源的真实商品图",
+        "status": "技术通过；静态展示可用"
+      }
+    },
+    {
+      "slug": "logitech-mx-master",
+      "name": "Logitech MX Master（初代）",
+      "identity": "2015 original MX Master photographed by othree; not Master 2S/3/3S",
+      "test": "单张真实照片、深色不规则小物、重复镜头风险",
+      "outputLicense": "Includes photo by othree, CC BY 2.0; attribution accompanies outputs",
+      "sources": [
+        {
+          "file": "mouse-angle.jpg",
+          "page": "https://commons.wikimedia.org/wiki/File:Logitech_MX_Master_(20242297670).jpg",
+          "author": "othree",
+          "license": "CC BY 2.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+          "sha256": "f558e504d6d96e56394eea2c38f594fdf510f3923399a0a99dc137d1474858f0",
+          "bytes": 5415733,
+          "width": 4608,
+          "height": 3072,
+          "duration": null
+        }
+      ],
+      "status": "rendered",
+      "projectId": "afdf5dac-37c4-44eb-95cb-7884edd44cd0",
+      "revision": 9,
+      "expectedSeconds": 15,
+      "sampleJobId": "363e8ce3-bdfb-4a9d-9d36-6be894260cc1",
+      "renderJobId": "3d803d4c-6a1f-498e-8430-5c07885cadea",
+      "width": 1080,
+      "height": 1920,
+      "duration": 15.019,
+      "sha256": "37c088968fc497ed282f0975f0a014c873d29f1951af2a1c4a2eb2b86f8f1ffc",
+      "checks": {
+        "vvv": {
+          "video": {
+            "fps": 30,
+            "width": 1080,
+            "height": 1920,
+            "durationSeconds": 15.019
+          },
+          "checks": [
+            {
+              "code": "FORMAT",
+              "status": "passed",
+              "message": "Frame is 1080×1920; the project format is 1080×1920."
+            },
+            {
+              "code": "RESOLUTION",
+              "status": "passed",
+              "message": "Short side is 1080px."
+            },
+            {
+              "code": "AUDIO",
+              "status": "passed",
+              "message": "Mean level -37.4 dBFS.",
+              "meanDbfs": -37.4,
+              "longestSilenceSeconds": 1
+            },
+            {
+              "code": "STILL",
+              "runs": [],
+              "status": "passed",
+              "message": "No still stretch longer than 3s.",
+              "stillShare": 0.79
+            }
+          ],
+          "limits": "Motion is measured as frame-to-frame change; grain or noise overlays can hide a frozen subject.",
+          "review": [
+            "The first three seconds give a reason to keep watching.",
+            "Each beat has one main thing to read, and text stays on screen long enough to read it.",
+            "Text is legible at phone size for the chosen format.",
+            "Names, dates and captions match the photos and the supplied facts.",
+            "The soundtrack suits the story, and its entry, exit and level work when listened to."
+          ],
+          "status": "passed"
+        },
+        "audio": "present",
+        "format": "passed",
+        "duration": "passed",
+        "fingerprint": "2e228671ee7639d24c24fc627f4e7e954cbbff7c6346462d0cdaaa73e2ea838e",
+        "visualReview": "not-reviewed"
+      },
+      "video": "logitech-mx-master-1080p.mp4",
+      "sample": "logitech-mx-master-sample.mp4",
+      "visualReview": {
+        "method": "Actual frames at 1, 4, 7, 10 and 13 seconds reviewed; not continuous playback or listening approval",
+        "assessment": "深色材质和侧边滚轮可见，型号未混用；只有一张照片，五镜头明显重复，建议补同型号侧面或实际使用视频。",
+        "input": "1 张真实商品照片",
+        "status": "技术通过；商业画面需补素材"
+      }
+    },
+    {
+      "slug": "fujifilm-x100v",
+      "name": "FUJIFILM X100V",
+      "identity": "Same X100V camera series photographed at Fujifilm square on 2020-02-09; not X100VI",
+      "test": "多张照片、金属反光、细小机身文字、规格事实一致性",
+      "outputLicense": "CC BY-SA 4.0 for this adaptation; photos by 昼落ち, original synthesized music CC0; application source license is separate",
+      "sources": [
+        {
+          "file": "camera-front.jpg",
+          "page": "https://commons.wikimedia.org/wiki/File:Fujifilm_X100V_9_feb_2020a.jpg",
+          "author": "昼落ち",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sha256": "7e82416c6f4a8feb09050df9053192d64dc4e2aaea0491e69296cca064d6c9e1",
+          "bytes": 1417141,
+          "width": 3600,
+          "height": 2500,
+          "duration": null
+        },
+        {
+          "file": "camera-top.jpg",
+          "page": "https://commons.wikimedia.org/wiki/File:Fujifilm_X100V_9_feb_2020b.jpg",
+          "author": "昼落ち",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sha256": "95a20ed955a3a25b8b9688bd28c9fe022c24aadc1c36731f0dbfdf070c9e6e11",
+          "bytes": 1810938,
+          "width": 3729,
+          "height": 2609,
+          "duration": null
+        },
+        {
+          "file": "camera-rear.jpg",
+          "page": "https://commons.wikimedia.org/wiki/File:Fujifilm_X100V_9_feb_2020c.jpg",
+          "author": "昼落ち",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "note": "Front three-quarter view, not a rear view; local filename retained only as download identifier",
+          "sha256": "4d16f5a1e974d564f57ebbd404a51b638421ec4a904c504e5320c6779ef8296f",
+          "bytes": 2014453,
+          "width": 3713,
+          "height": 2769,
+          "duration": null
+        }
+      ],
+      "status": "rendered",
+      "projectId": "33fb1a6f-d3aa-4659-a4f4-95405fead53d",
+      "revision": 9,
+      "expectedSeconds": 15,
+      "sampleJobId": "fb05319c-c30c-452d-a5ec-8aa29c5d6243",
+      "renderJobId": "77b3f976-e1ca-433a-8e7b-7163a1cb72df",
+      "width": 1080,
+      "height": 1920,
+      "duration": 15.019,
+      "sha256": "7aae2997625d60b0bc75c6137c7f83078f2cbec8d7443040bbc01a06c9d963a1",
+      "checks": {
+        "vvv": {
+          "video": {
+            "fps": 30,
+            "width": 1080,
+            "height": 1920,
+            "durationSeconds": 15.019
+          },
+          "checks": [
+            {
+              "code": "FORMAT",
+              "status": "passed",
+              "message": "Frame is 1080×1920; the project format is 1080×1920."
+            },
+            {
+              "code": "RESOLUTION",
+              "status": "passed",
+              "message": "Short side is 1080px."
+            },
+            {
+              "code": "AUDIO",
+              "status": "passed",
+              "message": "Mean level -37.4 dBFS.",
+              "meanDbfs": -37.4,
+              "longestSilenceSeconds": 1
+            },
+            {
+              "code": "STILL",
+              "runs": [],
+              "status": "passed",
+              "message": "No still stretch longer than 3s.",
+              "stillShare": 0.78
+            }
+          ],
+          "limits": "Motion is measured as frame-to-frame change; grain or noise overlays can hide a frozen subject.",
+          "review": [
+            "The first three seconds give a reason to keep watching.",
+            "Each beat has one main thing to read, and text stays on screen long enough to read it.",
+            "Text is legible at phone size for the chosen format.",
+            "Names, dates and captions match the photos and the supplied facts.",
+            "The soundtrack suits the story, and its entry, exit and level work when listened to."
+          ],
+          "status": "passed"
+        },
+        "audio": "present",
+        "format": "passed",
+        "duration": "passed",
+        "fingerprint": "2607ba4fce7411a398c6adeebd320db2bcef8e4363626a7d534864189f17a4de",
+        "visualReview": "not-reviewed"
+      },
+      "video": "fujifilm-x100v-1080p.mp4",
+      "sample": "fujifilm-x100v-sample.mp4",
+      "visualReview": {
+        "method": "Actual frames at 1, 4, 7, 10 and 13 seconds reviewed; not continuous playback or listening approval",
+        "assessment": "真实机身和不同拍摄视角均保留，镜头/像素规格有官方来源；照片曝光差异仍存在，不等于展示了相机成像实测。",
+        "input": "3 张同系列拍摄的 X100V 照片",
+        "status": "技术通过；多图展示可用"
+      }
+    },
+    {
+      "slug": "french-press",
+      "name": "法压壶冲煮（品类验证）",
+      "identity": "Real filmed French press; manufacturer and exact SKU unverified",
+      "test": "4K 横屏动作素材转 9:16、手和商品的裁切、25fps 转 30fps",
+      "outputLicense": "Pexels footage terms + original music CC0; no brand endorsement",
+      "sources": [
+        {
+          "file": "coffee-poster.jpg",
+          "page": "https://www.pexels.com/video/person-pouring-coffee-from-french-press-7301092/",
+          "author": "Taryn Elliott",
+          "license": "Pexels License",
+          "licenseUrl": "https://www.pexels.com/license/",
+          "note": "Frame extracted at 5s from the same source footage",
+          "sha256": "440a78d701313d14c92351df347ec720919da78e0c0a9355f9c92365243be5c4",
+          "bytes": 24840,
+          "width": 960,
+          "height": 540,
+          "duration": null
+        },
+        {
+          "file": "coffee.mp4",
+          "page": "https://www.pexels.com/video/person-pouring-coffee-from-french-press-7301092/",
+          "author": "Taryn Elliott",
+          "license": "Pexels License",
+          "licenseUrl": "https://www.pexels.com/license/",
+          "sha256": "5acefe5adc3d5c6218cedfcb6ecebea6463d83f0e1c3a77ed4e5481b81e05310",
+          "bytes": 26468495,
+          "width": 3840,
+          "height": 2160,
+          "duration": 13.84
+        }
+      ],
+      "status": "rendered",
+      "projectId": "821c14d8-b0fb-49da-82ee-e46d3c217982",
+      "revision": 9,
+      "expectedSeconds": 15,
+      "sampleJobId": "dc2bd7d9-c3cc-447c-8d9d-b77334803c48",
+      "renderJobId": "78dfc2ba-74a0-478d-a713-62f5ed1c221f",
+      "width": 1080,
+      "height": 1920,
+      "duration": 15.019,
+      "sha256": "c0919eac2f095bcc73ba858c6873e2344d7a6defd80d950d258e3830c6e93b6d",
+      "checks": {
+        "vvv": {
+          "video": {
+            "fps": 30,
+            "width": 1080,
+            "height": 1920,
+            "durationSeconds": 15.019
+          },
+          "checks": [
+            {
+              "code": "FORMAT",
+              "status": "passed",
+              "message": "Frame is 1080×1920; the project format is 1080×1920."
+            },
+            {
+              "code": "RESOLUTION",
+              "status": "passed",
+              "message": "Short side is 1080px."
+            },
+            {
+              "code": "AUDIO",
+              "status": "passed",
+              "message": "Mean level -37.4 dBFS.",
+              "meanDbfs": -37.4,
+              "longestSilenceSeconds": 1
+            },
+            {
+              "code": "STILL",
+              "runs": [],
+              "status": "passed",
+              "message": "No still stretch longer than 3s.",
+              "stillShare": 0
+            }
+          ],
+          "limits": "Motion is measured as frame-to-frame change; grain or noise overlays can hide a frozen subject.",
+          "review": [
+            "The first three seconds give a reason to keep watching.",
+            "Each beat has one main thing to read, and text stays on screen long enough to read it.",
+            "Text is legible at phone size for the chosen format.",
+            "Names, dates and captions match the photos and the supplied facts.",
+            "The soundtrack suits the story, and its entry, exit and level work when listened to."
+          ],
+          "status": "passed"
+        },
+        "audio": "present",
+        "format": "passed",
+        "duration": "passed",
+        "fingerprint": "21ab4fb38f49d024645ea806d290a53373c41bc80bcc64edf73688bdb731eb1f",
+        "visualReview": "not-reviewed"
+      },
+      "video": "french-press-1080p.mp4",
+      "sample": "french-press-sample.mp4",
+      "visualReview": {
+        "method": "Actual frames at 1, 4, 7, 10 and 13 seconds reviewed; not continuous playback or listening approval",
+        "assessment": "调整横向焦点至 70%，壶身、倒咖啡动作和杯子比首版清楚；末镜返回早先壶仍可见的片段。部分手柄或手臂可能贴边，横屏转竖屏仍需逐镜头审看。",
+        "input": "1 段 3840×2160 实拍视频及同源抽帧",
+        "status": "技术通过；实拍动作最自然，具体 SKU 未验证"
+      }
+    }
+  ],
+  "scope": "素材真实性、型号一致性、上传与渲染流程、画面布局；不验证商品性能、投放转化或商用授权关系。"
+}

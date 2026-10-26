@@ -1,4 +1,5 @@
 import { z } from "zod";
+import type { SceneReview } from "./scene-model";
 export const productSchema = z.object({
   name: z.string().max(40),
   benefits: z.array(z.string().max(100)).max(6),
@@ -12,11 +13,25 @@ export const productSchema = z.object({
 });
 export const shotSchema = z.object({
   id: z.string().uuid(),
-  headline: z.string().min(1).max(48),
+  headline: z
+    .string()
+    .trim()
+    .min(1)
+    .max(48)
+    .refine((v) => v.split(/\r?\n/).length <= 3, "主文案最多三行"),
   caption: z.string().max(80),
   seconds: z.number().min(1).max(10).multipleOf(0.5),
   assetId: z.string().uuid().nullable(),
   trimBefore: z.number().min(0),
+  role: z.enum(["context", "prepare", "action", "detail", "result"]).optional(),
+  reviewId: z.string().uuid().optional(),
+  segmentId: z.string().uuid().optional(),
+  textPlacement: z.enum(["top", "bottom"]).optional(),
+  textMode: z.enum(["title", "subtitle", "none"]).optional(),
+  zoom: z.number().min(1).max(1.6).optional(),
+  sourceVolume: z.number().min(0).max(1).optional(),
+  focusX: z.number().min(0).max(100).optional(),
+  focusY: z.number().min(0).max(100).optional(),
   description: z.string().max(300),
   allowGenerated: z.literal(false),
   fit: z.enum(["cover", "contain"]),
@@ -32,6 +47,8 @@ export const shotsSchema = z
       ctx.addIssue({ code: "custom", message: "镜头编号重复" });
   });
 export const projectPatch = z.object({
+  productionMode: z.enum(["scene", "presentation"]).optional(),
+  sceneGroup: z.string().trim().max(80).optional(),
   expectedRevision: z.number().int().positive(),
   product: productSchema,
   shots: z.array(shotSchema).max(5),
@@ -50,6 +67,8 @@ export type Concept = {
   shots: Shot[];
 };
 export type Project = {
+  productionMode?: "scene" | "presentation";
+  sceneGroup?: string;
   id: string;
   revision: number;
   status: string;
@@ -64,6 +83,7 @@ export type Project = {
   updatedAt: string;
 };
 export type Asset = {
+  sceneReview?: SceneReview;
   id: string;
   projectId: string;
   name: string;
@@ -91,6 +111,7 @@ export type Job = {
   createdAt: string;
 };
 export type Artifact = {
+  pipelineVersion?: string;
   id: string;
   jobId: string;
   projectId: string;

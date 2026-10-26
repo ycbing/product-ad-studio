@@ -1,0 +1,69 @@
+[
+  {
+    "slug": "morning-coffee-scene",
+    "name": "法压壶 · 把早晨还给自己",
+    "identity": "法压壶品类场景样片，未验证品牌或SKU；非品牌委托广告。",
+    "test": "同系列真实使用场景叙事；不生成商品，不把照片冒充动作。",
+    "outputLicense": "Pexels License for source footage/adaptation; original synthesized music CC0.",
+    "assets": [
+      {
+        "file": "7301091.mp4",
+        "page": "https://www.pexels.com/video/a-woman-making-coffee-in-the-kitchen-7301091/",
+        "author": "Taryn Elliott",
+        "license": "Pexels License",
+        "licenseUrl": "https://www.pexels.com/license/",
+        "note": "Same dated shooting series; category demonstration, manufacturer/SKU unverified. Original has no audio stream."
+      },
+      {
+        "file": "7301090.mp4",
+        "page": "https://www.pexels.com/video/person-pouring-hot-water-for-brewing-coffee-7301090/",
+        "author": "Taryn Elliott",
+        "license": "Pexels License",
+        "licenseUrl": "https://www.pexels.com/license/",
+        "note": "Same dated shooting series; category demonstration, manufacturer/SKU unverified. Original has no audio stream."
+      },
+      {
+        "file": "7301092.mp4",
+        "page": "https://www.pexels.com/video/person-pouring-coffee-from-french-press-7301092/",
+        "author": "Taryn Elliott",
+        "license": "Pexels License",
+        "licenseUrl": "https://www.pexels.com/license/",
+        "note": "Same dated shooting series; category demonstration, manufacturer/SKU unverified. Original has no audio stream."
+      },
+      {
+        "file": "7301093.mp4",
+        "page": "https://www.pexels.com/video/a-woman-pouring-coffee-7301093/",
+        "author": "Taryn Elliott",
+        "license": "Pexels License",
+        "licenseUrl": "https://www.pexels.com/license/",
+        "note": "Same dated shooting series; category demonstration, manufacturer/SKU unverified. Original has no audio stream."
+      },
+      {
+        "file": "coffee-poster.jpg",
+        "page": "https://www.pexels.com/video/person-pouring-coffee-from-french-press-7301092/",
+        "author": "Taryn Elliott",
+        "license": "Pexels License",
+        "licenseUrl": "https://www.pexels.com/license/",
+        "note": "Frame extracted from 7301092.mp4 at 5 seconds."
+      }
+    ],
+    "benefits": ["真实展示注水与倒出过程", "玻璃壶身"],
+    "audience": "喜欢在家冲煮咖啡的人",
+    "scene": "木屋厨房与窗边早餐桌",
+    "brand": "",
+    "plan": [0, 1, 3, 2, 2],
+    "starts": [1, 0.5, 1, 1, 8],
+    "seconds": [3, 4, 3, 5, 3.5],
+    "focusXs": [51, 88, 78, 68, 90],
+    "textModes": ["title", "none", "none", "subtitle", "title"],
+    "zooms": [1, 1, 1, 1.08, 1],
+    "headlines": [
+      "先给自己\n一杯的时间",
+      "注入热水",
+      "窗边，慢慢倒出",
+      "不急，慢慢倒。",
+      "把早晨\n还给自己"
+    ],
+    "captions": ["", "", "", "不急，慢慢倒。", "法压壶 · 日常冲煮"]
+  }
+]

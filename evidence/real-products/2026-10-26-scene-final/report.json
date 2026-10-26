@@ -1,0 +1,222 @@
+{
+  "parentRun": "2026-10-26-scene",
+  "templateRevision": "scene-first-v3",
+  "runId": "2026-10-26-scene-final",
+  "createdAt": "2026-10-26T04:34:59.483Z",
+  "status": "rendered-and-frame-reviewed",
+  "pipeline": "real HTTP upload → saved project → rule concepts → custom storyboard → sample → test acknowledgement → full render",
+  "audio": "Same original synthesized music; narration disabled for this visual comparison. No paid AI calls.",
+  "approvalIsTestOnly": true,
+  "humanContinuousReview": false,
+  "results": [
+    {
+      "slug": "morning-coffee-scene",
+      "name": "法压壶 · 把早晨还给自己",
+      "identity": "法压壶品类场景样片，未验证品牌或SKU；非品牌委托广告。",
+      "test": "同系列真实使用场景叙事；不生成商品，不把照片冒充动作。",
+      "outputLicense": "Pexels License for source footage/adaptation; original synthesized music CC0.",
+      "sources": [
+        {
+          "file": "7301091.mp4",
+          "page": "https://www.pexels.com/video/a-woman-making-coffee-in-the-kitchen-7301091/",
+          "author": "Taryn Elliott",
+          "license": "Pexels License",
+          "licenseUrl": "https://www.pexels.com/license/",
+          "note": "Same dated shooting series; category demonstration, manufacturer/SKU unverified. Original has no audio stream.",
+          "sha256": "7938aea837aaa4d0b01fffa35c6522c0de7512ed67d495c774724980c06b3fc6",
+          "bytes": 16513855,
+          "width": 2560,
+          "height": 1440,
+          "duration": 11.96
+        },
+        {
+          "file": "7301090.mp4",
+          "page": "https://www.pexels.com/video/person-pouring-hot-water-for-brewing-coffee-7301090/",
+          "author": "Taryn Elliott",
+          "license": "Pexels License",
+          "licenseUrl": "https://www.pexels.com/license/",
+          "note": "Same dated shooting series; category demonstration, manufacturer/SKU unverified. Original has no audio stream.",
+          "sha256": "54d4f9e207dfe51f6aabf33b89d9c2c13f87eee5eb8dc9b4f345f000c18b27dc",
+          "bytes": 40962347,
+          "width": 3840,
+          "height": 2160,
+          "duration": 15.24
+        },
+        {
+          "file": "7301092.mp4",
+          "page": "https://www.pexels.com/video/person-pouring-coffee-from-french-press-7301092/",
+          "author": "Taryn Elliott",
+          "license": "Pexels License",
+          "licenseUrl": "https://www.pexels.com/license/",
+          "note": "Same dated shooting series; category demonstration, manufacturer/SKU unverified. Original has no audio stream.",
+          "sha256": "5acefe5adc3d5c6218cedfcb6ecebea6463d83f0e1c3a77ed4e5481b81e05310",
+          "bytes": 26468495,
+          "width": 3840,
+          "height": 2160,
+          "duration": 13.84
+        },
+        {
+          "file": "7301093.mp4",
+          "page": "https://www.pexels.com/video/a-woman-pouring-coffee-7301093/",
+          "author": "Taryn Elliott",
+          "license": "Pexels License",
+          "licenseUrl": "https://www.pexels.com/license/",
+          "note": "Same dated shooting series; category demonstration, manufacturer/SKU unverified. Original has no audio stream.",
+          "sha256": "e9724456901b6afa1b0241129ffaa7cba9b26d189e231c433fdf6908764aee7b",
+          "bytes": 38530748,
+          "width": 3840,
+          "height": 2160,
+          "duration": 27.28
+        },
+        {
+          "file": "coffee-poster.jpg",
+          "page": "https://www.pexels.com/video/person-pouring-coffee-from-french-press-7301092/",
+          "author": "Taryn Elliott",
+          "license": "Pexels License",
+          "licenseUrl": "https://www.pexels.com/license/",
+          "note": "Frame extracted from 7301092.mp4 at 5 seconds.",
+          "sha256": "440a78d701313d14c92351df347ec720919da78e0c0a9355f9c92365243be5c4",
+          "bytes": 24840,
+          "width": 960,
+          "height": 540,
+          "duration": null
+        }
+      ],
+      "status": "rendered",
+      "projectId": "f285d8cc-1eec-4bc8-8f2a-1a6f5129dd6b",
+      "revision": 9,
+      "expectedSeconds": 18.5,
+      "sampleJobId": "b7d39957-4833-4066-b7e4-b79ed91d8004",
+      "renderJobId": "0f551990-6a7c-46a1-a4c8-6f9a15de6b75",
+      "width": 1080,
+      "height": 1920,
+      "duration": 18.517,
+      "sha256": "329214c74ff5fada15714bc7c5e834795b48f4603f01986844c683138237fc1d",
+      "checks": {
+        "vvv": {
+          "video": {
+            "fps": 30,
+            "width": 1080,
+            "height": 1920,
+            "durationSeconds": 18.517
+          },
+          "checks": [
+            {
+              "code": "FORMAT",
+              "status": "passed",
+              "message": "Frame is 1080×1920; the project format is 1080×1920."
+            },
+            {
+              "code": "RESOLUTION",
+              "status": "passed",
+              "message": "Short side is 1080px."
+            },
+            {
+              "code": "AUDIO",
+              "status": "passed",
+              "message": "Mean level -37.2 dBFS.",
+              "meanDbfs": -37.2,
+              "longestSilenceSeconds": 0.5
+            },
+            {
+              "code": "STILL",
+              "runs": [],
+              "status": "passed",
+              "message": "No still stretch longer than 3s.",
+              "stillShare": 0
+            }
+          ],
+          "limits": "Motion is measured as frame-to-frame change; grain or noise overlays can hide a frozen subject.",
+          "review": [
+            "The first three seconds give a reason to keep watching.",
+            "Each beat has one main thing to read, and text stays on screen long enough to read it.",
+            "Text is legible at phone size for the chosen format.",
+            "Names, dates and captions match the photos and the supplied facts.",
+            "The soundtrack suits the story, and its entry, exit and level work when listened to."
+          ],
+          "status": "passed"
+        },
+        "audio": "present",
+        "format": "passed",
+        "duration": "passed",
+        "fingerprint": "bb78e018a617637bf51df3fcd14ad184b99443920885ce69374b8d44287530b5",
+        "visualReview": "not-reviewed"
+      },
+      "video": "morning-coffee-scene-1080p.mp4",
+      "sample": "morning-coffee-scene-sample.mp4",
+      "timeline": [
+        {
+          "order": 1,
+          "timelineStart": 0,
+          "seconds": 3,
+          "source": "7301091.mp4",
+          "trimBefore": 1,
+          "focusX": 51,
+          "zoom": 1,
+          "textMode": "title",
+          "headline": "先给自己\n一杯的时间",
+          "caption": ""
+        },
+        {
+          "order": 2,
+          "timelineStart": 3,
+          "seconds": 4,
+          "source": "7301090.mp4",
+          "trimBefore": 0.5,
+          "focusX": 88,
+          "zoom": 1,
+          "textMode": "none",
+          "headline": "注入热水",
+          "caption": ""
+        },
+        {
+          "order": 3,
+          "timelineStart": 7,
+          "seconds": 3,
+          "source": "7301093.mp4",
+          "trimBefore": 1,
+          "focusX": 78,
+          "zoom": 1,
+          "textMode": "none",
+          "headline": "窗边，慢慢倒出",
+          "caption": ""
+        },
+        {
+          "order": 4,
+          "timelineStart": 10,
+          "seconds": 5,
+          "source": "7301092.mp4",
+          "trimBefore": 1,
+          "focusX": 68,
+          "zoom": 1.08,
+          "textMode": "subtitle",
+          "headline": "不急，慢慢倒。",
+          "caption": "不急，慢慢倒。"
+        },
+        {
+          "order": 5,
+          "timelineStart": 15,
+          "seconds": 3.5,
+          "source": "7301092.mp4",
+          "trimBefore": 8,
+          "focusX": 90,
+          "zoom": 1,
+          "textMode": "title",
+          "headline": "把早晨\n还给自己",
+          "caption": "法压壶 · 日常冲煮"
+        }
+      ],
+      "visualReview": {
+        "method": "Actual 1080p output frames, 0.5..18.3 seconds, including cut boundaries; local studio preview checked. Not continuous playback or listening approval.",
+        "findings": [
+          "Same shooting series: kitchen preparation → pouring water → wide coffee pour → close coffee pour → setting press down and picking up cup.",
+          "No fixed card, generic shot numbers or forced title on every scene.",
+          "Reframed water shot at 88%, wide pouring shot at 78%, end product shot at 90% to preserve spout, body and handle.",
+          "Portrait crop intentionally excludes some environment and parts of the person; no synthesized product or action.",
+          "Original source videos have no audio; soundtrack is original synthesized music, not recorded pouring sound."
+        ]
+      }
+    }
+  ],
+  "sampleType": "Real-footage category lifestyle edit; manually curated action order, not single-image generation."
+}

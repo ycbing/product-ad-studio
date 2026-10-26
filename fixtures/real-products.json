@@ -1,0 +1,222 @@
+[
+  {
+    "slug": "nintendo-switch",
+    "name": "Nintendo Switch（2017）",
+    "brand": "NINTENDO SWITCH · 非官方样片",
+    "identity": "Confirmed by source descriptions; original 2017 model, not OLED or Switch 2",
+    "audience": "关注游戏设备外观与组合方式的用户",
+    "scene": "游戏设备展示",
+    "benefits": [
+      "主机本体与 Joy-Con 可分开展示",
+      "底座与手柄组合",
+      "原始商品外观保留"
+    ],
+    "assets": [
+      {
+        "file": "switch-tablet.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Nintendo-Switch-Console-Bare-FL.jpg",
+        "author": "Evan-Amos",
+        "license": "Public domain",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/"
+      },
+      {
+        "file": "switch-docked.png",
+        "page": "https://commons.wikimedia.org/wiki/File:Nintendo_Switch_Console.png",
+        "author": "Owen1962",
+        "license": "Public domain",
+        "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/"
+      }
+    ],
+    "plan": [
+      0,
+      1,
+      0,
+      1,
+      0
+    ],
+    "headlines": [
+      "给休闲时间，\n留一点游戏。",
+      "Nintendo Switch",
+      "主机本体，\n细节看清楚。",
+      "底座与手柄，\n另一种组合。",
+      "挑选适合你的\n游戏设备。"
+    ],
+    "captions": [
+      "真实商品图片 · 非官方创意样片",
+      "原版 Nintendo Switch 设备展示",
+      "图片保留真实按键和接口外观",
+      "组合方式以具体产品说明为准",
+      "不展示价格，不承诺游戏或性能"
+    ],
+    "test": "宽幅设备、多个组件、透明 PNG 与 JPEG 混合",
+    "outputLicense": "Original validation arrangement; photos public domain"
+  },
+  {
+    "slug": "logitech-mx-master",
+    "name": "Logitech MX Master（初代）",
+    "brand": "LOGITECH MX MASTER · 非官方样片",
+    "identity": "2015 original MX Master photographed by othree; not Master 2S/3/3S",
+    "audience": "关注桌面外设的用户",
+    "scene": "桌面鼠标展示",
+    "benefits": [
+      "侧边拇指滚轮",
+      "右手轮廓设计",
+      "深色机身细节"
+    ],
+    "assets": [
+      {
+        "file": "mouse-angle.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Logitech_MX_Master_(20242297670).jpg",
+        "author": "othree",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0/"
+      }
+    ],
+    "plan": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "headlines": [
+      "桌面上的，\n一位老搭档。",
+      "Logitech MX Master",
+      "侧边滚轮，\n看见操控细节。",
+      "机身轮廓，\n保留真实质感。",
+      "选择适合你的\n桌面鼠标。"
+    ],
+    "captions": [
+      "初代 MX Master 实物照片展示",
+      "本片未展示其他代际型号",
+      "仅呈现图片中可见的外观特征",
+      "同一张原图，不伪造其他角度",
+      "图片：othree · CC BY 2.0"
+    ],
+    "test": "单张真实照片、深色不规则小物、重复镜头风险",
+    "outputLicense": "Includes photo by othree, CC BY 2.0; attribution accompanies outputs"
+  },
+  {
+    "slug": "fujifilm-x100v",
+    "name": "FUJIFILM X100V",
+    "brand": "FUJIFILM X100V · 非官方样片",
+    "identity": "Same X100V camera series photographed at Fujifilm square on 2020-02-09; not X100VI",
+    "audience": "关注相机外观和固定镜头设备的用户",
+    "scene": "相机产品展示",
+    "benefits": [
+      "23mm F2 固定镜头",
+      "约 2610 万有效像素",
+      "机身与旋钮细节"
+    ],
+    "factsSource": "https://fujifilm-dsc.com/en/manual/x100v/technical_notes/spec/index.html",
+    "assets": [
+      {
+        "file": "camera-front.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Fujifilm_X100V_9_feb_2020a.jpg",
+        "author": "昼落ち",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+      },
+      {
+        "file": "camera-top.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Fujifilm_X100V_9_feb_2020b.jpg",
+        "author": "昼落ち",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+      },
+      {
+        "file": "camera-rear.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Fujifilm_X100V_9_feb_2020c.jpg",
+        "author": "昼落ち",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "note": "Front three-quarter view, not a rear view; local filename retained only as download identifier"
+      }
+    ],
+    "plan": [
+      0,
+      1,
+      2,
+      1,
+      0
+    ],
+    "headlines": [
+      "把日常，\n收进取景器。",
+      "FUJIFILM X100V",
+      "23mm F2\n固定镜头。",
+      "约 2610 万\n有效像素。",
+      "看清细节，\n再选你的相机。"
+    ],
+    "captions": [
+      "真实 X100V 机身照片 · 非官方样片",
+      "同一型号的不同拍摄视角",
+      "镜头规格依据富士官方说明书",
+      "规格不代表本片展示了成像实测",
+      "图片：昼落ち · CC BY-SA 4.0"
+    ],
+    "test": "多张照片、金属反光、细小机身文字、规格事实一致性",
+    "outputLicense": "CC BY-SA 4.0 for this adaptation; photos by 昼落ち, original synthesized music CC0; application source license is separate"
+  },
+  {
+    "slug": "french-press",
+    "name": "法压壶冲煮（品类验证）",
+    "brand": "FRENCH PRESS · 品类样片",
+    "identity": "Real filmed French press; manufacturer and exact SKU unverified",
+    "audience": "关注家庭咖啡器具的用户",
+    "scene": "居家倒咖啡",
+    "benefits": [
+      "真实倒咖啡动作",
+      "壶身与手柄实拍",
+      "家庭使用场景"
+    ],
+    "assets": [
+      {
+        "file": "coffee-poster.jpg",
+        "page": "https://www.pexels.com/video/person-pouring-coffee-from-french-press-7301092/",
+        "author": "Taryn Elliott",
+        "license": "Pexels License",
+        "licenseUrl": "https://www.pexels.com/license/",
+        "note": "Frame extracted at 5s from the same source footage"
+      },
+      {
+        "file": "coffee.mp4",
+        "page": "https://www.pexels.com/video/person-pouring-coffee-from-french-press-7301092/",
+        "author": "Taryn Elliott",
+        "license": "Pexels License",
+        "licenseUrl": "https://www.pexels.com/license/"
+      }
+    ],
+    "plan": [
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "starts": [
+      0,
+      2.5,
+      5.5,
+      8.5,
+      3.5
+    ],
+    "headlines": [
+      "给早晨，\n留一杯时间。",
+      "从壶中，\n到杯中。",
+      "看得到的\n真实使用动作。",
+      "一把法压壶，\n走进日常。",
+      "挑选适合你的\n咖啡器具。"
+    ],
+    "captions": [
+      "真实倒咖啡片段 · 品类创意样片",
+      "不绑定未经核实的品牌型号",
+      "画面来自实拍，不是生成动画",
+      "本片不验证保温、容量或口感",
+      "素材：Taryn Elliott / Pexels"
+    ],
+    "test": "4K 横屏动作素材转 9:16、手和商品的裁切、25fps 转 30fps",
+    "outputLicense": "Pexels footage terms + original music CC0; no brand endorsement",
+    "focusX": 70,
+    "note": "Final shot returns to an earlier pouring moment so the product stays visible; this is an edited montage, not continuous chronology."
+  }
+]

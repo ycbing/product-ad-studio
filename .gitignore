@@ -13,3 +13,13 @@ __pycache__/
 renderer/public/voice-demo.wav
 renderer/public/voice-real.wav
 renderer/public/mix-refined.wav
+
+# Keep reviewed deliverables; intermediate validation runs remain local.
+evidence/real-products/*
+!evidence/real-products/2026-10-26-revised/
+!evidence/real-products/2026-10-26-scene-final/
+evidence/scene-quality/*
+!evidence/scene-quality/2026-10-26-engine-v1/
+evidence/**/initial-*.mp4
+evidence/**/qa-frame-*.jpg
+evidence/**/frame-[0-9]*.jpg

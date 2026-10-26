@@ -1,0 +1,27 @@
+
+> product-ad-studio@0.1.0 test
+> node --import tsx --test tests/*.test.ts
+
+✔ three rule concepts preserve five-shot structure and supplied facts (0.502875ms)
+✔ rejects media belonging to a different project (1.87875ms)
+✔ rejects video range exceeding actual source duration (0.209041ms)
+✔ rejects timelines outside 15–25 seconds (0.360292ms)
+✔ revision change makes the previous artifact stale (0.076125ms)
+✔ supports bounded, open and suffix byte ranges (0.446667ms)
+✔ rejects unsatisfiable or multipart ranges (0.069375ms)
+✔ prevents storage traversal outside the local storage root (0.069583ms)
+✔ blocks cross-origin requests against the local workspace (9.88125ms)
+✔ two-line hero title leaves space before product imagery (0.5795ms)
+✔ long CJK titles shrink to fit the title safe area (0.1105ms)
+✔ pricing reserves a separate area above the product (0.06ms)
+✔ legacy shots without a focal point remain valid (1.52075ms)
+✔ focal coordinates are preserved and constrained (0.234625ms)
+✔ rejects four hard lines instead of silently covering the product (0.097583ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 187.972375

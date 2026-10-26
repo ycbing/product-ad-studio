@@ -1,0 +1,9 @@
+
+> product-ad-studio@0.1.0 test:frames
+> python3 scripts/test-quality-frames.py
+
+....
+----------------------------------------------------------------------
+Ran 4 tests in 0.002s
+
+OK

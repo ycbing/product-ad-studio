@@ -18,6 +18,10 @@ import {
   validateSources,
   assertReady,
 } from "./models";
+import { PIPELINE_VERSION, productionJobKey } from "./production-version";
+import { sceneQuality, assertSceneReady } from "./scene-quality";
+import { reviewInputSchema, productIdentity } from "./scene-model";
+import { visibleSource, contains } from "../renderer/src/scene-framing";
 import { makeConcepts } from "./concepts";
 import { prepareStorage, storagePath, serveFile } from "./storage";
 import { probe } from "./media";
@@ -84,6 +88,8 @@ export async function handle(req: Request, parts: string[]) {
     if (group === "projects" && !id && method === "POST") {
       const pid = randomUUID();
       const document = {
+        productionMode: "scene",
+        sceneGroup: "",
         product: { ...emptyProduct },
         concepts: [],
         selectedConceptId: null,
@@ -110,8 +116,8 @@ export async function handle(req: Request, parts: string[]) {
             [id, ownerId()],
           ),
           pool.query(
-            "SELECT 1 FROM approvals WHERE project_id=$1 AND revision=$2 AND owner_id=$3",
-            [id, p.revision, ownerId()],
+            "SELECT 1 FROM approvals ap JOIN artifacts a ON a.id=ap.artifact_id WHERE ap.project_id=$1 AND ap.revision=$2 AND ap.owner_id=$3 AND a.checks->>'pipelineVersion'=$4",
+            [id, p.revision, ownerId(), PIPELINE_VERSION],
           ),
           pool.query(
             "SELECT provider,operation,units,cost,created_at FROM usage_events WHERE project_id=$1 AND owner_id=$2 ORDER BY created_at DESC",
@@ -120,6 +126,7 @@ export async function handle(req: Request, parts: string[]) {
         ]);
         return json({
           project: p,
+          quality: sceneQuality(p, aa),
           assets: aa,
           jobs: jj.rows.map(jobRow),
           artifacts: rr.rows.map(artifactRow),
@@ -133,6 +140,9 @@ export async function handle(req: Request, parts: string[]) {
           throw new HttpError("项目需要五个镜头");
         if (data.shots.length) validateSources(data.shots, await assets(id));
         const doc = {
+          productionMode:
+            data.productionMode ?? p.productionMode ?? "presentation",
+          sceneGroup: data.sceneGroup ?? p.sceneGroup ?? "",
           product: data.product,
           shots: data.shots,
           concepts: p.concepts,
@@ -173,7 +183,10 @@ export async function handle(req: Request, parts: string[]) {
               pid,
               ownerId(),
               {
-                product: { ...p.product, name: p.product.name + "（副本）" },
+                product: { ...p.product },
+                productionMode: p.productionMode ?? "presentation",
+                sceneGroup: p.sceneGroup ?? "",
+                musicEnabled: p.musicEnabled !== false,
                 concepts: [],
                 selectedConceptId: null,
                 shots: [],
@@ -199,7 +212,10 @@ export async function handle(req: Request, parts: string[]) {
           }
           await c.query("UPDATE projects SET document=$1 WHERE id=$2", [
             {
-              product: { ...p.product, name: p.product.name + "（副本）" },
+              product: { ...p.product },
+              productionMode: p.productionMode ?? "presentation",
+              sceneGroup: p.sceneGroup ?? "",
+              musicEnabled: p.musicEnabled !== false,
               concepts: [],
               selectedConceptId: null,
               shots: p.shots.map((s: any) => ({
@@ -282,12 +298,83 @@ export async function handle(req: Request, parts: string[]) {
         );
         return json({ assets: await assets(id) }, 201);
       }
+      if (action === "asset-review" && method === "POST") {
+        const data = reviewInputSchema.parse(await body(req));
+        await transaction(async (c) => {
+          const locked = (
+            await c.query(
+              "SELECT * FROM projects WHERE id=$1 AND owner_id=$2 AND deleted_at IS NULL FOR UPDATE",
+              [id, ownerId()],
+            )
+          ).rows[0];
+          if (!locked || locked.revision !== data.expectedRevision)
+            throw new HttpError("项目已更新，请刷新后重新标注", 409);
+          const asset = (
+            await c.query(
+              "SELECT * FROM assets WHERE id=$1 AND project_id=$2 AND owner_id=$3",
+              [data.assetId, id, ownerId()],
+            )
+          ).rows[0];
+          if (!asset || asset.metadata.kind !== "video")
+            throw new HttpError("请选择本项目的实拍视频");
+          for (const segment of data.segments) {
+            if (segment.end > asset.metadata.duration + 0.001)
+              throw new HttpError("标注片段超出实际视频时长");
+            if (
+              !contains(
+                visibleSource(
+                  asset.metadata.width,
+                  asset.metadata.height,
+                  segment.focusX,
+                  segment.focusY,
+                  segment.zoom,
+                ),
+                segment.subject,
+              )
+            )
+              throw new HttpError(
+                "竖屏裁切无法容纳保护区域，请调整焦点、减少放大或换竖屏素材",
+              );
+          }
+          const review = {
+            id: randomUUID(),
+            sha256: asset.metadata.sha256,
+            productIdentity: productIdentity(locked.document.product),
+            continuityKey: data.continuityKey,
+            confirmed: true,
+            segments: data.segments,
+          };
+          await c.query(
+            "UPDATE assets SET metadata=metadata || $1::jsonb WHERE id=$2 AND project_id=$3 AND owner_id=$4",
+            [
+              JSON.stringify({ sceneReview: review }),
+              data.assetId,
+              id,
+              ownerId(),
+            ],
+          );
+          await c.query(
+            "UPDATE projects SET revision=revision+1,status='draft',document=document || $1::jsonb,updated_at=now() WHERE id=$2 AND owner_id=$3",
+            [
+              JSON.stringify({ concepts: [], selectedConceptId: null }),
+              id,
+              ownerId(),
+            ],
+          );
+        });
+        return json({ project: await project(id), assets: await assets(id) });
+      }
       if (action === "concepts" && method === "POST") {
         assertReady(p.product);
         const aa = await assets(id);
-        if (!aa.some((a) => a.kind === "image"))
+        if (p.productionMode !== "scene" && !aa.some((a) => a.kind === "image"))
           throw new HttpError("请至少上传一张商品图片");
-        const result = await makeConcepts(p.product, aa);
+        const result = await makeConcepts(
+          p.product,
+          aa,
+          p.productionMode ?? "presentation",
+          p.sceneGroup,
+        );
         const updated = await transaction(async (c) => {
           const row = (
             await c.query(
@@ -380,6 +467,7 @@ export async function handle(req: Request, parts: string[]) {
             )
           ).rows.map(assetRow);
           validateSources(current.shots, aa);
+          if (data.kind !== "voice") assertSceneReady(current, aa);
           if (
             data.kind === "voice" &&
             !current.shots.some((s: any) => s.id === data.shotId)
@@ -387,13 +475,18 @@ export async function handle(req: Request, parts: string[]) {
             throw new HttpError("镜头不存在");
           if (data.kind === "render") {
             const ap = await c.query(
-              "SELECT 1 FROM approvals WHERE project_id=$1 AND revision=$2 AND owner_id=$3",
-              [id, current.revision, ownerId()],
+              "SELECT 1 FROM approvals ap JOIN artifacts a ON a.id=ap.artifact_id WHERE ap.project_id=$1 AND ap.revision=$2 AND ap.owner_id=$3 AND a.checks->>'pipelineVersion'=$4",
+              [id, current.revision, ownerId(), PIPELINE_VERSION],
             );
             if (!ap.rowCount)
               throw new HttpError("请先观看并确认当前版本样片", 409);
           }
-          const key = `${id}:${current.revision}:${data.kind}:${data.shotId ?? "all"}`;
+          const key = productionJobKey(
+            id,
+            current.revision,
+            data.kind,
+            data.shotId,
+          );
           const jobid = randomUUID();
           const inserted = await c.query(
             "INSERT INTO jobs(id,project_id,owner_id,revision,kind,shot_id,snapshot,idempotency_key) VALUES($1,$2,$3,$4,$5,$6,$7,$8) ON CONFLICT(idempotency_key) DO NOTHING RETURNING *",
@@ -404,7 +497,11 @@ export async function handle(req: Request, parts: string[]) {
               current.revision,
               data.kind,
               data.shotId ?? null,
-              { project: current, assets: aa },
+              {
+                pipelineVersion: PIPELINE_VERSION,
+                project: current,
+                assets: aa,
+              },
               key,
             ],
           );
@@ -424,21 +521,22 @@ export async function handle(req: Request, parts: string[]) {
         await transaction(async (c) => {
           const locked = (
             await c.query(
-              "SELECT revision FROM projects WHERE id=$1 AND owner_id=$2 FOR UPDATE",
+              "SELECT * FROM projects WHERE id=$1 AND owner_id=$2 FOR UPDATE",
               [id, ownerId()],
             )
           ).rows[0];
           if (locked.revision !== expectedRevision)
             throw new HttpError("样片已过期，请重新渲染", 409);
+          assertSceneReady(projectRow(locked), await assets(id));
           const artifact = (
             await c.query(
-              "SELECT id FROM artifacts WHERE project_id=$1 AND owner_id=$2 AND revision=$3 AND kind='sample' ORDER BY created_at DESC LIMIT 1",
-              [id, ownerId(), expectedRevision],
+              "SELECT id FROM artifacts WHERE project_id=$1 AND owner_id=$2 AND revision=$3 AND kind='sample' AND checks->>'pipelineVersion'=$4 ORDER BY created_at DESC LIMIT 1",
+              [id, ownerId(), expectedRevision, PIPELINE_VERSION],
             )
           ).rows[0];
           if (!artifact) throw new HttpError("请先生成并观看当前样片");
           await c.query(
-            "INSERT INTO approvals(project_id,revision,owner_id,artifact_id) VALUES($1,$2,$3,$4) ON CONFLICT DO NOTHING",
+            "INSERT INTO approvals(project_id,revision,owner_id,artifact_id) VALUES($1,$2,$3,$4) ON CONFLICT(project_id,revision) DO UPDATE SET artifact_id=EXCLUDED.artifact_id,created_at=now()",
             [id, expectedRevision, ownerId(), artifact.id],
           );
         });

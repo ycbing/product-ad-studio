@@ -1,9 +1,18 @@
 import { randomUUID } from "node:crypto";
 import { z } from "zod";
+import { planScene } from "./scene-planner";
 import type { Asset, Concept, Product, Shot } from "./models";
-export function ruleConcepts(p: Product, assets: Asset[]): Concept[] {
+export function ruleConcepts(
+  p: Product,
+  assets: Asset[],
+  mode: "scene" | "presentation" = "presentation",
+  group?: string,
+): Concept[] {
+  const scene = mode === "scene" ? planScene(p, assets, group) : null;
   const image = assets.find((a) => a.kind === "image");
-  const sources = assets.filter((a) => a.kind === "video");
+  const sources = assets.filter(
+    (a) => a.kind === "video" && (a.duration ?? 0) >= 4,
+  );
   const base = [
     p.benefits[0],
     p.benefits[1] || p.benefits[0],
@@ -14,12 +23,14 @@ export function ruleConcepts(p: Product, assets: Asset[]): Concept[] {
     {
       title: "痛点开场",
       hook: p.scene ? `${p.scene}，也想更顺手？` : "每天都用，能不能更顺手？",
-      summary: "从日常场景引入，再展示商品与已确认卖点。",
+      summary:
+        "先呈现使用环境，再剪入操作与结果。请按分镜说明匹配实拍，系统不会自动生成这些动作。",
     },
     {
       title: "生活提问",
       hook: `${p.name}，适合你的日常吗？`,
-      summary: "用一个问题吸引注意，接着展示真实商品细节。",
+      summary:
+        "用提问开场，以操作和使用结果回答；缺少的视频需补拍，避免用照片替代动作。",
     },
     {
       title: "直接展示",
@@ -27,17 +38,57 @@ export function ruleConcepts(p: Product, assets: Asset[]): Concept[] {
       summary: "直接呈现最重要的卖点，让商品先被看见。",
     },
   ];
-  return hooks.map((h) => {
+  const sceneHooks = [
+    {
+      title: "使用过程",
+      hook: `${p.name}，这样融入日常`,
+      summary: "按已核对的环境、准备、操作、细节与结果片段剪辑；不补造动作。",
+    },
+    {
+      title: "从生活开始",
+      hook: `给日常，留一点时间`,
+      summary: "从实拍环境开场，让真实操作推进故事；沿用已核对的同组素材。",
+    },
+    {
+      title: "先看怎么用",
+      hook: `先看看，${p.name}怎么用`,
+      summary: "突出已拍到的使用动作，文字避让已标注的商品与动作区域。",
+    },
+  ];
+  return (scene ? sceneHooks : hooks).map((h) => {
     const text = [h.hook, ...base];
+    // Keep the supplied clip order; stay on the last clip for the ending,
+    // instead of jumping back to the opening environment.
+    const sequence = text.map(
+      (_, i) => sources[Math.min(i, sources.length - 1)] ?? image,
+    );
     const shots: Shot[] = text.map((t, i) => {
-      const a = sources[i % sources.length] ?? image;
+      const a = sequence[i];
+      const occurrences = sequence.filter(
+        (source) => source?.id === a?.id,
+      ).length;
+      const occurrence = sequence
+        .slice(0, i)
+        .filter((source) => source?.id === a?.id).length;
       return {
         id: randomUUID(),
         headline: t.slice(0, 48),
         caption: i === 0 ? "" : t.slice(0, 60),
         seconds: 4,
         assetId: a?.id ?? null,
-        trimBefore: 0,
+        // Distribute repeated sources across their usable range, instead of
+        // playing the beginning of the same clip five times.
+        trimBefore:
+          a?.kind === "video"
+            ? Math.round(
+                ((Math.max(0, (a.duration ?? 4) - 4) * occurrence) /
+                  Math.max(1, occurrences - 1)) *
+                  1000,
+              ) / 1000
+            : 0,
+        textMode: i === 0 || i === 4 ? "title" : "subtitle",
+        zoom: 1,
+        sourceVolume: 0,
         description: [
           "开场：展示真实使用环境",
           "商品登场：保留原始外观",
@@ -53,8 +104,14 @@ export function ruleConcepts(p: Product, assets: Asset[]): Concept[] {
       id: randomUUID(),
       ...h,
       source: "rule",
-      estimatedSeconds: 20,
-      shots,
+      estimatedSeconds: scene?.reduce((n, s) => n + s.seconds, 0) ?? 20,
+      shots: scene
+        ? scene.map((s, i) => ({
+            ...s,
+            id: randomUUID(),
+            headline: i === 0 ? h.hook.slice(0, 48) : s.headline,
+          }))
+        : shots,
     };
   });
 }
@@ -69,8 +126,13 @@ const responseSchema = z.object({
     )
     .length(3),
 });
-export async function makeConcepts(p: Product, assets: Asset[]) {
-  const concepts = ruleConcepts(p, assets);
+export async function makeConcepts(
+  p: Product,
+  assets: Asset[],
+  mode: "scene" | "presentation" = "presentation",
+  group?: string,
+) {
+  const concepts = ruleConcepts(p, assets, mode, group);
   if (!process.env.TEXT_API_KEY || !process.env.TEXT_MODEL)
     return {
       concepts,

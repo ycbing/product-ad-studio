@@ -1,0 +1,30 @@
+
+> product-ad-studio@0.1.0 validate:quality
+> node --env-file-if-exists=.env.local --import tsx scripts/validate-scene-quality.ts
+
+PASS unreviewed scene refuses generation without photo fallback
+PASS four real videos uploaded out of narrative order; no mandatory poster image
+PASS annotations validate explicit confirmation, actual duration, crop containment and revision conflicts
+PASS repeated automatic planning yields identical clips, timing, focal points and text placement
+PASS semantic roles override upload order; text automatically avoids protected action areas
+PASS API blocks SUBJECT_CROPPED before allocating a render job
+PASS API blocks TEXT_OVER_SUBJECT before allocating a render job
+PASS API blocks UNREVIEWED_RANGE before allocating a render job
+PASS API blocks REVIEW_STALE before allocating a render job
+PASS changing product identity requires renewed material verification
+PASS same-revision duplicate sample request reuses one job
+等待执行
+渲染视频
+检查视频与音频
+已完成
+等待执行
+渲染视频
+检查视频与音频
+已完成
+PASS actual sample and 1080p render complete using automatically planned shots
+PASS old-engine sample cannot approve or authorize export, even at the same project revision
+PASS duplicated project preserves scene mode, identity and verified framing
+PASS worker rejects changed source bytes before rendering, even when metadata still appears valid
+PASS annotation route rejects another project's asset ID
+PASS editing annotations invalidates old shots and approval; stale references cannot export
+REPORT /Users/yancb/Documents/Codex/2026-10-25/fe-b/outputs/product-ad-studio-app/evidence/scene-quality/2026-10-26-engine-v1/report.json

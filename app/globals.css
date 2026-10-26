@@ -1106,6 +1106,7 @@ h3 {
   color: #60734f;
 }
 .phone-preview {
+  container-type: inline-size;
   width: 258px;
   height: 459px;
   position: relative;
@@ -1123,8 +1124,8 @@ h3 {
 }
 .phone-preview:has(.contain) > img,
 .phone-preview:has(.contain) > video {
-  height: 58%;
-  top: 25%;
+  height: 50%;
+  top: 32%;
   padding: 12px;
 }
 .preview-gradient {
@@ -2086,4 +2087,158 @@ h3 {
   .hero-play {
     display: none;
   }
+}
+
+/* Scene edits preserve the footage, with text below the action. */
+.scene-preview {
+  background: #12140f;
+}
+.scene-preview .preview-gradient {
+  background: linear-gradient(
+    180deg,
+    #0003,
+    transparent 18%,
+    transparent 57%,
+    #0009
+  );
+}
+.scene-preview .preview-brand {
+  color: #fff;
+  text-shadow: 0 1px 4px #0008;
+}
+.scene-preview .preview-brand > span,
+.scene-preview .preview-headline small,
+.scene-preview .preview-disclaimer {
+  display: none;
+}
+.scene-preview .preview-headline {
+  top: auto;
+  bottom: 22.4%;
+  left: 7%;
+  right: 9.3%;
+  color: #fffdf8;
+  text-shadow: 0 1px 5px #0006;
+}
+.scene-preview .preview-headline strong {
+  font-weight: 500;
+  line-height: 1.35;
+}
+.scene-preview .preview-caption {
+  bottom: 15.6%;
+  left: 7.9%;
+  right: 11.1%;
+  font-size: 3.33cqw;
+  text-align: left;
+}
+.scene-preview.text-subtitle .preview-headline,
+.scene-preview.text-none .preview-headline,
+.scene-preview.text-none .preview-caption,
+.scene-preview.text-none .preview-gradient {
+  display: none;
+}
+.story-warning {
+  font-size: 11px;
+  line-height: 1.6;
+  color: #6c5831;
+  padding: 10px;
+  background: #f6efdc;
+  border-radius: 8px;
+}
+
+.scene-preview.text-at-top .preview-headline {
+  top: 13%;
+  bottom: auto;
+}
+.scene-preview.text-at-top .preview-caption {
+  top: 27.6%;
+  bottom: auto;
+}
+.asset-review-button {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 8px;
+  background: #203b31e8;
+  color: white;
+  font-size: 11px;
+  border: 0;
+  cursor: pointer;
+}
+.review-editor {
+  padding: 16px;
+  margin-top: 20px;
+  background: #f5f5ef;
+  border: 1px solid #d8dfd0;
+  border-radius: 12px;
+}
+.review-editor p,
+.review-editor small {
+  font-size: 12px;
+  line-height: 1.7;
+  display: block;
+}
+.review-editor label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+  margin: 12px 0;
+}
+.review-editor input,
+.review-editor select {
+  max-width: 100%;
+  padding: 8px;
+  border: 1px solid #ccd4c5;
+  border-radius: 6px;
+}
+.review-editor .review-confirm {
+  flex-direction: row;
+  align-items: flex-start;
+}
+.segment-tabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin: 12px 0;
+}
+.segment-tabs button {
+  padding: 6px;
+  border: 1px solid #cad4c1;
+  border-radius: 5px;
+  background: white;
+  font-size: 11px;
+}
+.segment-tabs button.selected {
+  background: #203b31;
+  color: white;
+}
+.source-mark-frame {
+  position: relative;
+  width: 100%;
+  background: #111;
+  touch-action: none;
+}
+.source-mark-frame video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+.crop-guide,
+.subject-guide {
+  position: absolute;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+.crop-guide {
+  border: 2px dashed #58e194;
+}
+.subject-guide {
+  border: 2px solid #ffa44b;
+  background: #ffae3315;
+}
+
+.scene-preview.text-at-top .preview-gradient {
+  background: linear-gradient(180deg, #0009 0%, #0004 28%, transparent 48%);
 }

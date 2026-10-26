@@ -46,6 +46,7 @@ export function jobRow(r: any) {
 }
 export function artifactRow(r: any) {
   return {
+    pipelineVersion: r.checks?.pipelineVersion,
     id: r.id,
     jobId: r.job_id,
     projectId: r.project_id,

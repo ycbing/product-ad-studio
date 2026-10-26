@@ -1,4 +1,9 @@
 "use client";
+import { currentArtifact } from "../lib/production-version";
+import { AssetReviewEditor } from "./asset-review";
+import { sceneQuality } from "../lib/scene-quality";
+import { roleNames } from "../lib/scene-model";
+import { storyWarnings } from "../lib/story-quality";
 import { useEffect, useRef, useState } from "react";
 import {
   Plus,
@@ -31,6 +36,7 @@ import {
   Sparkles,
   MoreHorizontal,
 } from "lucide-react";
+import { titleFontSize, sceneTitleFontSize } from "@/renderer/src/web-layout";
 import type {
   Project,
   Asset,
@@ -89,11 +95,19 @@ function Media({
   fit = "cover",
   className = "",
   trim = 0,
+  focusX = 50,
+  focusY = 50,
+  zoom = 1,
+  seconds,
 }: {
   asset?: Asset;
   fit?: "cover" | "contain";
   className?: string;
   trim?: number;
+  focusX?: number;
+  focusY?: number;
+  zoom?: number;
+  seconds?: number;
 }) {
   return !asset ? (
     <div className={"missing-media " + className}>
@@ -105,11 +119,20 @@ function Media({
       key={asset.id + trim}
       className={className}
       src={asset.url + `#t=${trim}`}
-      style={{ objectFit: fit }}
+      style={{
+        objectFit: fit,
+        objectPosition: `${focusX}% ${focusY}%`,
+        transform: `scale(${zoom})`,
+        transformOrigin: `${focusX}% ${focusY}%`,
+      }}
       muted
       playsInline
       loop
       autoPlay
+      onTimeUpdate={(e) => {
+        if (seconds && e.currentTarget.currentTime >= trim + seconds)
+          e.currentTarget.currentTime = trim;
+      }}
       onLoadedMetadata={(e) => {
         e.currentTarget.currentTime = trim;
       }}
@@ -119,11 +142,17 @@ function Media({
       className={className}
       src={asset.url}
       alt={asset.name}
-      style={{ objectFit: fit }}
+      style={{
+        objectFit: fit,
+        objectPosition: `${focusX}% ${focusY}%`,
+        transform: `scale(${zoom})`,
+        transformOrigin: `${focusX}% ${focusY}%`,
+      }}
     />
   );
 }
 export default function Studio() {
+  const [reviewingAsset, setReviewingAsset] = useState<string | null>(null);
   const [projects, setProjects] = useState<Project[]>([]);
   const [detail, setDetail] = useState<Detail | null>(null);
   const [draft, setDraft] = useState<Project | null>(null);
@@ -143,15 +172,23 @@ export default function Studio() {
   const projectId = detail?.project.id;
   const p = draft;
   const assets = detail?.assets ?? [];
+  const quality = p ? sceneQuality(p, assets) : null;
   const currentShot = p?.shots[selected];
   const shotAsset = assets.find((a) => a.id === currentShot?.assetId);
   const activeJob =
     detail?.jobs.find((j) => j.status === "running") ??
     detail?.jobs.find((j) => j.status === "queued");
-  const sample = detail?.artifacts.find((a) => a.kind === "sample");
-  const final = detail?.artifacts.find((a) => a.kind === "render");
-  const shown = final?.revision === p?.revision ? final : sample;
-  const stale = !!shown && (shown.revision !== p?.revision || dirty);
+  const sample =
+    detail?.artifacts.find((a) => a.kind === "sample" && currentArtifact(a)) ??
+    detail?.artifacts.find((a) => a.kind === "sample");
+  const final =
+    detail?.artifacts.find((a) => a.kind === "render" && currentArtifact(a)) ??
+    detail?.artifacts.find((a) => a.kind === "render");
+  const shown =
+    final?.revision === p?.revision && currentArtifact(final) ? final : sample;
+  const stale =
+    !!shown &&
+    (shown.revision !== p?.revision || !currentArtifact(shown) || dirty);
   const currentVoice = detail?.artifacts.find(
     (a) =>
       a.kind === "voice" &&
@@ -233,6 +270,8 @@ export default function Studio() {
       "PATCH",
       {
         expectedRevision: p.revision,
+        productionMode: p.productionMode ?? "presentation",
+        sceneGroup: p.sceneGroup ?? "",
         product: p.product,
         shots: p.shots,
         ttsEnabled: p.ttsEnabled,
@@ -447,7 +486,7 @@ export default function Studio() {
                   先让商品被看见。
                 </h2>
                 <p>
-                  上传商品图，选择一个开头。
+                  上传真实素材，规划一个场景。
                   <br />
                   在五个镜头里，把故事讲清楚。
                 </p>
@@ -763,7 +802,9 @@ export default function Studio() {
                         <h2>
                           真实商品素材 <b>*</b>
                         </h2>
-                        <p>保留原始外观，商品才可信。</p>
+                        <p>
+                          建议准备环境、操作细节和使用结果三类视频；仅上传商品照片时输出图文展示。
+                        </p>
                       </div>
                       <span className="asset-count">{assets.length}/10</span>
                     </div>
@@ -791,6 +832,42 @@ export default function Studio() {
                       </strong>
                       <span>JPG / PNG / WebP ≤15MB · MP4 ≤100MB</span>
                     </button>
+                    <label>
+                      制作方式
+                      <select
+                        value={p.productionMode ?? "presentation"}
+                        onChange={(e) => {
+                          setDraft({
+                            ...p,
+                            productionMode: e.target.value as
+                              | "scene"
+                              | "presentation",
+                          });
+                          setDirty(true);
+                        }}
+                      >
+                        <option value="scene">
+                          真实场景 · 按已核对片段剪辑
+                        </option>
+                        <option value="presentation">
+                          商品图展示 · 明确使用图文版式
+                        </option>
+                      </select>
+                    </label>
+                    {p.productionMode === "scene" && (
+                      <label>
+                        使用拍摄组（只有一组时可留空）
+                        <input
+                          maxLength={80}
+                          value={p.sceneGroup ?? ""}
+                          onChange={(e) => {
+                            setDraft({ ...p, sceneGroup: e.target.value });
+                            setDirty(true);
+                          }}
+                          placeholder="与片段标注中的拍摄组一致"
+                        />
+                      </label>
+                    )}
                     <div className="asset-grid">
                       {assets.map((a) => (
                         <div className="asset-tile" key={a.id}>
@@ -805,11 +882,48 @@ export default function Studio() {
                               ? `${a.duration?.toFixed(1)}s`
                               : "原图"}
                           </span>
+                          {a.kind === "video" && (
+                            <button
+                              type="button"
+                              className="asset-review-button"
+                              onClick={() => setReviewingAsset(a.id)}
+                            >
+                              {a.sceneReview
+                                ? `已标注 ${a.sceneReview.segments.length} 段 · 编辑`
+                                : "标注动作与保护区域"}
+                            </button>
+                          )}
                         </div>
                       ))}
                     </div>
+                    {reviewingAsset &&
+                      assets.find((a) => a.id === reviewingAsset) && (
+                        <AssetReviewEditor
+                          key={reviewingAsset}
+                          asset={assets.find((a) => a.id === reviewingAsset)!}
+                          group={p.sceneGroup || p.product.name}
+                          onClose={() => setReviewingAsset(null)}
+                          onSave={async (review) => {
+                            const saved = await save();
+                            await api(
+                              `projects/${saved.id}/asset-review`,
+                              "POST",
+                              {
+                                ...review,
+                                assetId: reviewingAsset,
+                                expectedRevision: saved.revision,
+                              },
+                            );
+                            await load(saved.id);
+                            setReviewingAsset(null);
+                            setNotice(
+                              "片段标注已保存，旧方案和样片已失效；重新生成可复用相同选片与构图",
+                            );
+                          }}
+                        />
+                      )}
                     <p className="field-note">
-                      至少一张商品图片。真实使用视频可让广告更自然；没有实拍时采用图文展示，不虚构使用动作。
+                      真实场景需标注环境、准备、动作、细节、结果五类片段；同一视频可以标注多个不重叠片段。商品图展示须明确选择，不会自动降级。
                     </p>
                   </div>
                   <div className="soft-callout">
@@ -837,7 +951,7 @@ export default function Studio() {
                     ) : (
                       <ArrowRight size={17} />
                     )}
-                    生成三种剧情方案
+                    生成三个剪辑草稿
                   </button>
                 </div>
               </div>
@@ -847,7 +961,9 @@ export default function Studio() {
                 <div className="stage-heading">
                   <div className="eyebrow">ONE PRODUCT. THREE OPENINGS.</div>
                   <h2>选一个开头，让故事开始。</h2>
-                  <p>后段沿用同一套结构。你可以先改开头，再进入分镜编辑。</p>
+                  <p>
+                    按环境、操作、细节与结果组织镜头。草稿需要匹配真实素材，不会自动补出未拍摄的动作。
+                  </p>
                 </div>
                 <div className="concept-grid">
                   {p.concepts.map((c, i) => (
@@ -939,20 +1055,34 @@ export default function Studio() {
                         </div>
                         <div>
                           <strong>
-                            {
-                              [
-                                "开场",
-                                "商品登场",
-                                "细节展示",
-                                "日常场景",
-                                "收尾",
-                              ][i]
-                            }
+                            {shot.role
+                              ? roleNames[shot.role]
+                              : [
+                                  "开场",
+                                  "商品登场",
+                                  "细节展示",
+                                  "日常场景",
+                                  "收尾",
+                                ][i]}
                           </strong>
                           <p>{shot.headline}</p>
                           <small>{shot.seconds}s</small>
                         </div>
                       </button>
+                    ))}
+                    {sceneQuality(p, assets).blockers.map((issue) => (
+                      <p
+                        className="story-warning"
+                        role="alert"
+                        key={issue.code + issue.shot}
+                      >
+                        {issue.message}
+                      </p>
+                    ))}
+                    {storyWarnings(p.shots, assets).map((message) => (
+                      <p className="story-warning" key={message}>
+                        {message}
+                      </p>
                     ))}
                     <div className="shot-note">
                       <ImageIcon size={15} />
@@ -964,11 +1094,28 @@ export default function Studio() {
                       <span>镜头 {String(selected + 1).padStart(2, "0")}</span>
                       <span>排版预览 · 非渲染成片</span>
                     </div>
-                    <div className="phone-preview">
+                    <div
+                      className={
+                        "phone-preview " +
+                        (currentShot.fit === "cover"
+                          ? "scene-preview text-at-" +
+                            (currentShot.textPlacement ?? "bottom") +
+                            " text-" +
+                            (currentShot.textMode ??
+                              (selected === 0 || selected === 4
+                                ? "title"
+                                : "subtitle"))
+                          : "")
+                      }
+                    >
                       <Media
                         asset={shotAsset}
                         fit={currentShot.fit}
                         trim={currentShot.trimBefore}
+                        focusX={currentShot.focusX ?? 50}
+                        focusY={currentShot.focusY ?? 50}
+                        zoom={currentShot.zoom ?? 1}
+                        seconds={currentShot.seconds}
                       />
                       <div
                         className={
@@ -977,15 +1124,32 @@ export default function Studio() {
                         }
                       />
                       <div className="preview-brand">
-                        {p.product.brand || "DAILY OBJECTS"}
+                        {p.product.brand ||
+                          (currentShot.fit === "contain"
+                            ? "DAILY OBJECTS"
+                            : "")}
                         <span>AI 辅助创作</span>
                       </div>
                       <div className="preview-headline">
                         <small>0{selected + 1} / 05</small>
-                        <strong>{currentShot.headline}</strong>
+                        <strong
+                          style={{
+                            fontSize: `${((currentShot.fit === "cover" ? sceneTitleFontSize(currentShot.headline) : titleFontSize(currentShot.headline, selected === 0 || selected === 4)) / 1080) * 100}cqw`,
+                            wordBreak: "break-all",
+                          }}
+                        >
+                          {currentShot.headline}
+                        </strong>
                       </div>
                       <div className="preview-caption">
-                        {currentShot.caption}
+                        {currentShot.caption ||
+                          (currentShot.fit === "cover" &&
+                          (currentShot.textMode ??
+                            (selected === 0 || selected === 4
+                              ? "title"
+                              : "subtitle")) === "subtitle"
+                            ? currentShot.headline
+                            : "")}
                       </div>
                       <div className="preview-disclaimer">
                         商品信息以实际说明为准
@@ -1106,6 +1270,96 @@ export default function Studio() {
                       </select>
                     </label>
                     <label>
+                      场景文字
+                      <select
+                        disabled={currentShot.fit !== "cover"}
+                        value={
+                          currentShot.textMode ??
+                          (selected === 0 || selected === 4
+                            ? "title"
+                            : "subtitle")
+                        }
+                        onChange={(e) => editShot("textMode", e.target.value)}
+                      >
+                        <option value="title">标题与字幕</option>
+                        <option value="subtitle">仅字幕，让动作说话</option>
+                        <option value="none">纯画面</option>
+                      </select>
+                    </label>
+                    <label>
+                      场景文字位置
+                      <select
+                        value={currentShot.textPlacement ?? "bottom"}
+                        disabled={currentShot.fit !== "cover"}
+                        onChange={(e) =>
+                          editShot("textPlacement", e.target.value)
+                        }
+                      >
+                        <option value="bottom">下方安全区</option>
+                        <option value="top">上方安全区</option>
+                      </select>
+                    </label>
+                    <label>
+                      画面放大（{(currentShot.zoom ?? 1).toFixed(2)}×）
+                      <input
+                        type="range"
+                        min="1"
+                        max="1.6"
+                        step="0.01"
+                        value={currentShot.zoom ?? 1}
+                        disabled={currentShot.fit !== "cover"}
+                        onChange={(e) =>
+                          editShot("zoom", Number(e.target.value))
+                        }
+                      />
+                    </label>
+                    <label>
+                      原片声音（
+                      {Math.round((currentShot.sourceVolume ?? 0) * 100)}%）
+                      <input
+                        type="range"
+                        min="0"
+                        max="1"
+                        step="0.05"
+                        value={currentShot.sourceVolume ?? 0}
+                        disabled={shotAsset?.kind !== "video"}
+                        onChange={(e) =>
+                          editShot("sourceVolume", Number(e.target.value))
+                        }
+                      />
+                      <small>
+                        素材需自带音轨；配音期间自动降低原声。排版预览静音，成片保留设置。
+                      </small>
+                    </label>
+                    <label>
+                      横向画面焦点（{currentShot.focusX ?? 50}%）
+                      <input
+                        type="range"
+                        min="0"
+                        max="100"
+                        step="1"
+                        value={currentShot.focusX ?? 50}
+                        disabled={currentShot.fit !== "cover"}
+                        onChange={(e) =>
+                          editShot("focusX", Number(e.target.value))
+                        }
+                      />
+                    </label>
+                    <label>
+                      纵向画面焦点（{currentShot.focusY ?? 50}%）
+                      <input
+                        type="range"
+                        min="0"
+                        max="100"
+                        step="1"
+                        value={currentShot.focusY ?? 50}
+                        disabled={currentShot.fit !== "cover"}
+                        onChange={(e) =>
+                          editShot("focusY", Number(e.target.value))
+                        }
+                      />
+                    </label>
+                    <label>
                       画面说明
                       <textarea
                         rows={2}
@@ -1171,7 +1425,9 @@ export default function Studio() {
                   </span>
                   <button
                     className="button primary"
-                    disabled={disabled || !!activeJob}
+                    disabled={
+                      disabled || !!activeJob || quality?.ready === false
+                    }
                     onClick={() => void act("生成样片", () => queue("sample"))}
                   >
                     {busy === "生成样片" ? (
@@ -1265,6 +1521,14 @@ export default function Studio() {
                         </strong>
                       </span>
                     </div>
+                    {quality?.blockers.map((issue) => (
+                      <p
+                        className="story-warning"
+                        key={issue.code + issue.shot}
+                      >
+                        {issue.message}
+                      </p>
+                    ))}
                     {stale && (
                       <div className="inline-warning">
                         <AlertCircle size={16} />
@@ -1273,7 +1537,9 @@ export default function Studio() {
                     )}
                     <button
                       className="button secondary wide"
-                      disabled={disabled || !!activeJob}
+                      disabled={
+                        disabled || !!activeJob || quality?.ready === false
+                      }
                       onClick={() =>
                         void act("生成样片", () => queue("sample"))
                       }
@@ -1288,6 +1554,7 @@ export default function Studio() {
                         disabled={
                           !sample ||
                           sample.revision !== p.revision ||
+                          !currentArtifact(sample) ||
                           dirty ||
                           detail?.approved
                         }
@@ -1303,7 +1570,10 @@ export default function Studio() {
                         disabled ||
                         !!activeJob ||
                         dirty ||
+                        quality?.ready === false ||
                         (!detail?.approved && !approvedBox) ||
+                        !sample ||
+                        !currentArtifact(sample) ||
                         sample?.revision !== p.revision
                       }
                       onClick={() =>

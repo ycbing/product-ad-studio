@@ -17,7 +17,10 @@
     "build": "next build",
     "test": "node --import tsx --test tests/*.test.ts",
     "start": "next start --hostname 127.0.0.1 --port 3100",
-    "test:integration": "node --env-file-if-exists=.env.local --import tsx scripts/integration.ts"
+    "test:integration": "node --env-file-if-exists=.env.local --import tsx scripts/integration.ts",
+    "validate:products": "node --env-file-if-exists=.env.local --import tsx scripts/validate-real-products.ts",
+    "validate:quality": "node --env-file-if-exists=.env.local --import tsx scripts/validate-scene-quality.ts",
+    "test:frames": "python3 scripts/test-quality-frames.py"
   },
   "dependencies": {
     "next": "16.4.3",

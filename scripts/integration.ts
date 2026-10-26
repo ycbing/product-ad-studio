@@ -68,6 +68,7 @@ try {
   events.push("real image and MP4 uploaded with probed metadata");
   let payload = {
     expectedRevision: project.revision,
+    productionMode: "presentation",
     product: {
       ...project.product,
       name: "验收测试商品",

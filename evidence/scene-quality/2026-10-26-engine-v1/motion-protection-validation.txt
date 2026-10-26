@@ -1,0 +1,10 @@
+等待执行
+准备镜头 3 / 5
+渲染视频
+检查视频与音频
+已完成
+等待执行
+渲染视频
+检查视频与音频
+已完成
+PASS motion protection refinement f4760a82-9a53-4ba3-af95-820f1b6bf5a1 19

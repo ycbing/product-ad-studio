@@ -1,0 +1,44 @@
+
+> product-ad-studio@0.1.0 test
+> node --import tsx --test tests/*.test.ts
+
+✔ three rule concepts preserve five-shot structure and supplied facts (0.586042ms)
+✔ rejects media belonging to a different project (2.379458ms)
+✔ rejects video range exceeding actual source duration (0.251917ms)
+✔ rejects timelines outside 15–25 seconds (0.367542ms)
+✔ revision change makes the previous artifact stale (0.069042ms)
+✔ supports bounded, open and suffix byte ranges (0.480416ms)
+✔ rejects unsatisfiable or multipart ranges (0.075708ms)
+✔ prevents storage traversal outside the local storage root (0.071375ms)
+✔ blocks cross-origin requests against the local workspace (16.06675ms)
+✔ two-line hero title leaves space before product imagery (0.59575ms)
+✔ long CJK titles shrink to fit the title safe area (0.120708ms)
+✔ pricing reserves a separate area above the product (0.058584ms)
+✔ legacy shots without a focal point remain valid (1.911958ms)
+✔ focal coordinates are preserved and constrained (0.286625ms)
+✔ rejects four hard lines instead of silently covering the product (0.108291ms)
+✔ identical production requests dedupe but a changed engine must not return old renders (2.549875ms)
+✔ reviewed planning is independent of upload order and repeat calls (5.670917ms)
+✔ scene mode refuses photo-only, unreviewed, or incomplete footage instead of silently substituting (1.339459ms)
+✔ never mixes identities to complete a story (0.288708ms)
+✔ sha mismatch and changing annotation ids invalidate existing cuts (0.248667ms)
+✔ manual crop, text placement, range and role edits cannot bypass the export gate (0.388ms)
+✔ portrait crop math respects focal position and zoom; too-wide subjects are not squeezed to fit (0.117041ms)
+✔ short footage and overlapping reuse are not stretched to fill a story (19.989292ms)
+✔ annotation input requires explicit confirmation and a nonempty, valid region (20.057583ms)
+✔ changing product identity invalidates the review and prevents planning (2.805667ms)
+✔ framing containment holds across landscape, square and portrait sources and zoom levels (3.514792ms)
+✔ expanding protection for a lifted hand or cup removes colliding end titles (9.031792ms)
+✔ single long clip uses different valid in-points rather than repeating frame zero (3.438917ms)
+✔ multiple clips remain in range and repeat only at a new in-point (0.324541ms)
+✔ photo-only output is explicitly identified as a photo presentation (0.199334ms)
+✔ overlapping reuse is flagged, while distinct cuts are not (0.154166ms)
+✔ scene controls survive validation and reject invalid volume or zoom (0.56375ms)
+ℹ tests 32
+ℹ suites 0
+ℹ pass 32
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 517.576334

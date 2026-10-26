@@ -1,0 +1,272 @@
+{
+  "pipelineVersion": "reviewed-scene-v1",
+  "status": "passed",
+  "annotationIsTestOnly": true,
+  "exportAcknowledgementIsTestOnly": true,
+  "continuousHumanReview": false,
+  "events": [
+    "unreviewed scene refuses generation without photo fallback",
+    "four real videos uploaded out of narrative order; no mandatory poster image",
+    "annotations validate explicit confirmation, actual duration, crop containment and revision conflicts",
+    "repeated automatic planning yields identical clips, timing, focal points and text placement",
+    "semantic roles override upload order; text automatically avoids protected action areas",
+    "API blocks SUBJECT_CROPPED before allocating a render job",
+    "API blocks TEXT_OVER_SUBJECT before allocating a render job",
+    "API blocks UNREVIEWED_RANGE before allocating a render job",
+    "API blocks REVIEW_STALE before allocating a render job",
+    "changing product identity requires renewed material verification",
+    "same-revision duplicate sample request reuses one job",
+    "actual sample and 1080p render complete using automatically planned shots",
+    "old-engine sample cannot approve or authorize export, even at the same project revision",
+    "duplicated project preserves scene mode, identity and verified framing",
+    "worker rejects changed source bytes before rendering, even when metadata still appears valid",
+    "annotation route rejects another project's asset ID",
+    "editing annotations invalidates old shots and approval; stale references cannot export",
+    "Frame review expanded the end-shot protection to include the lifted hand/cup; automatic planner suppresses colliding text without manual shot edits"
+  ],
+  "sources": [
+    {
+      "file": "7301092.mp4",
+      "page": "https://www.pexels.com/video/person-pouring-coffee-from-french-press-7301092/",
+      "author": "Taryn Elliott",
+      "license": "Pexels License",
+      "licenseUrl": "https://www.pexels.com/license/",
+      "note": "Same dated shooting series; category demonstration, manufacturer/SKU unverified. Original has no audio stream.",
+      "sha256": "5acefe5adc3d5c6218cedfcb6ecebea6463d83f0e1c3a77ed4e5481b81e05310"
+    },
+    {
+      "file": "7301093.mp4",
+      "page": "https://www.pexels.com/video/a-woman-pouring-coffee-7301093/",
+      "author": "Taryn Elliott",
+      "license": "Pexels License",
+      "licenseUrl": "https://www.pexels.com/license/",
+      "note": "Same dated shooting series; category demonstration, manufacturer/SKU unverified. Original has no audio stream.",
+      "sha256": "e9724456901b6afa1b0241129ffaa7cba9b26d189e231c433fdf6908764aee7b"
+    },
+    {
+      "file": "7301090.mp4",
+      "page": "https://www.pexels.com/video/person-pouring-hot-water-for-brewing-coffee-7301090/",
+      "author": "Taryn Elliott",
+      "license": "Pexels License",
+      "licenseUrl": "https://www.pexels.com/license/",
+      "note": "Same dated shooting series; category demonstration, manufacturer/SKU unverified. Original has no audio stream.",
+      "sha256": "54d4f9e207dfe51f6aabf33b89d9c2c13f87eee5eb8dc9b4f345f000c18b27dc"
+    },
+    {
+      "file": "7301091.mp4",
+      "page": "https://www.pexels.com/video/a-woman-making-coffee-in-the-kitchen-7301091/",
+      "author": "Taryn Elliott",
+      "license": "Pexels License",
+      "licenseUrl": "https://www.pexels.com/license/",
+      "note": "Same dated shooting series; category demonstration, manufacturer/SKU unverified. Original has no audio stream.",
+      "sha256": "7938aea837aaa4d0b01fffa35c6522c0de7512ed67d495c774724980c06b3fc6"
+    }
+  ],
+  "startedAt": "2026-10-26T05:58:06.917Z",
+  "projectId": "f4760a82-9a53-4ba3-af95-820f1b6bf5a1",
+  "timeline": [
+    {
+      "id": "8f4aae4c-ca6b-4a06-988a-b9b960c345d4",
+      "fit": "cover",
+      "role": "context",
+      "zoom": 1,
+      "focusX": 51,
+      "focusY": 50,
+      "assetId": "75459671-23fd-479c-8044-87bc597f7479",
+      "caption": "",
+      "seconds": 3,
+      "headline": "先给自己\n一杯的时间",
+      "reviewId": "6b339302-96a6-404b-90f4-fe0208e4a23e",
+      "textMode": "title",
+      "segmentId": "58d61c35-d610-44bb-aedb-22a342f7e043",
+      "trimBefore": 1,
+      "description": "厨房里准备早餐",
+      "sourceVolume": 0,
+      "textPlacement": "bottom",
+      "allowGenerated": false
+    },
+    {
+      "id": "75b8580b-81b9-4eb5-8485-72429ddfff06",
+      "fit": "cover",
+      "role": "prepare",
+      "zoom": 1,
+      "focusX": 88,
+      "focusY": 50,
+      "assetId": "c09dd56e-f6d2-48c7-ba6d-265ff04731b8",
+      "caption": "",
+      "seconds": 4,
+      "headline": "将热水注入法压壶",
+      "reviewId": "d18ac852-ae6f-4227-b88d-7609bc0178b9",
+      "textMode": "none",
+      "segmentId": "72754d20-bd09-4ec2-9061-45e9acefffff",
+      "trimBefore": 0.5,
+      "description": "将热水注入法压壶",
+      "sourceVolume": 0,
+      "textPlacement": "bottom",
+      "allowGenerated": false
+    },
+    {
+      "id": "9ae5e91d-f924-496c-b5b1-92f1f646c252",
+      "fit": "cover",
+      "role": "action",
+      "zoom": 1,
+      "focusX": 78,
+      "focusY": 50,
+      "assetId": "ae4d0bcc-f0b8-4a38-baaa-c06b08723b2e",
+      "caption": "",
+      "seconds": 3,
+      "headline": "窗边倒咖啡",
+      "reviewId": "0d69eda2-7d14-4152-9153-8df118b0c9dd",
+      "textMode": "none",
+      "segmentId": "723b47e3-bca9-467a-8e73-03d5540e772f",
+      "trimBefore": 1,
+      "description": "窗边倒咖啡",
+      "sourceVolume": 0,
+      "textPlacement": "bottom",
+      "allowGenerated": false
+    },
+    {
+      "id": "095eaa07-0261-4766-9bc6-353fe3641e4d",
+      "fit": "cover",
+      "role": "detail",
+      "zoom": 1.08,
+      "focusX": 68,
+      "focusY": 50,
+      "assetId": "d60fc086-faac-4bf8-b169-7f7d8d4b7576",
+      "caption": "",
+      "seconds": 5,
+      "headline": "壶嘴、水流与杯口细节",
+      "reviewId": "7f028085-c5f0-444d-b2a0-61a96e424556",
+      "textMode": "none",
+      "segmentId": "e25cb650-6461-462b-8859-ac38ce987a9c",
+      "trimBefore": 1,
+      "description": "壶嘴、水流与杯口细节",
+      "sourceVolume": 0,
+      "textPlacement": "bottom",
+      "allowGenerated": false
+    },
+    {
+      "id": "241d06e1-1f8a-496c-ad15-a002bf801ebc",
+      "fit": "cover",
+      "role": "result",
+      "zoom": 1,
+      "focusX": 90,
+      "focusY": 50,
+      "assetId": "d60fc086-faac-4bf8-b169-7f7d8d4b7576",
+      "caption": "",
+      "seconds": 3.5,
+      "headline": "把早晨，还给自己",
+      "reviewId": "7f028085-c5f0-444d-b2a0-61a96e424556",
+      "textMode": "none",
+      "segmentId": "9960d522-3de3-4e10-80db-aa23d05966a4",
+      "trimBefore": 8,
+      "description": "放下壶，端起杯子",
+      "sourceVolume": 0,
+      "textPlacement": "bottom",
+      "allowGenerated": false
+    }
+  ],
+  "revision": 19,
+  "sampleJobId": "bef35135-e1c4-4f1d-965f-327f2ebd8cf1",
+  "sampleSha256": "c5c56da58b5a60c3e86a2185ae9f02818f056a02a23c5b502ac5018abf96ed32",
+  "renderJobId": "bd86b76d-971a-4d5c-82d5-ca338010c1ed",
+  "final": {
+    "pipelineVersion": "reviewed-scene-v1",
+    "id": "43aae469-a422-498b-86b4-440f7324e4dd",
+    "jobId": "bd86b76d-971a-4d5c-82d5-ca338010c1ed",
+    "projectId": "f4760a82-9a53-4ba3-af95-820f1b6bf5a1",
+    "revision": 19,
+    "kind": "render",
+    "url": "/api/artifacts/43aae469-a422-498b-86b4-440f7324e4dd",
+    "width": 1080,
+    "height": 1920,
+    "duration": 18.517,
+    "createdAt": "2026-10-26T06:24:30.784Z",
+    "sha256": "c708461265ffe82ad672b0acd4b48063d461887886ae434168f343ef677821cc"
+  },
+  "copyProjectId": "de1f9620-9818-433d-9def-be4a61d7bcb4",
+  "quality": {
+    "mode": "scene",
+    "ready": true,
+    "blockers": [],
+    "warnings": []
+  },
+  "finishedAt": "2026-10-26T06:24:31.277Z",
+  "checks": {
+    "vvv": {
+      "video": {
+        "fps": 30,
+        "width": 1080,
+        "height": 1920,
+        "durationSeconds": 18.517
+      },
+      "checks": [
+        {
+          "code": "FORMAT",
+          "status": "passed",
+          "message": "Frame is 1080×1920; the project format is 1080×1920."
+        },
+        {
+          "code": "RESOLUTION",
+          "status": "passed",
+          "message": "Short side is 1080px."
+        },
+        {
+          "code": "AUDIO",
+          "status": "passed",
+          "message": "Mean level -37.2 dBFS.",
+          "meanDbfs": -37.2,
+          "longestSilenceSeconds": 0.5
+        },
+        {
+          "code": "STILL",
+          "runs": [],
+          "status": "passed",
+          "message": "No still stretch longer than 3s.",
+          "stillShare": 0
+        },
+        {
+          "code": "BLACK",
+          "limits": "Downscaled near-black full-frame check; does not assess exposure, intent or general visual quality.",
+          "status": "passed",
+          "message": "Longest sampled near-black stretch: 0.00s at 30.0fps.",
+          "sampleRate": 30,
+          "longestSampledBlackSeconds": 0
+        }
+      ],
+      "limits": "Motion is measured as frame-to-frame change; grain or noise overlays can hide a frozen subject.",
+      "review": [
+        "The first three seconds give a reason to keep watching.",
+        "Each beat has one main thing to read, and text stays on screen long enough to read it.",
+        "Text is legible at phone size for the chosen format.",
+        "Names, dates and captions match the photos and the supplied facts.",
+        "The soundtrack suits the story, and its entry, exit and level work when listened to."
+      ],
+      "status": "passed"
+    },
+    "audio": "present",
+    "format": "passed",
+    "duration": "passed",
+    "fingerprint": "86469b21c9652c35c713b7d7f5209bc7cdee8bb0f52f0346e9a3104c78991394",
+    "visualReview": "not-reviewed",
+    "sourceQuality": {
+      "mode": "scene",
+      "ready": true,
+      "blockers": [],
+      "warnings": []
+    },
+    "pipelineVersion": "reviewed-scene-v1"
+  },
+  "tests": {
+    "domainAndLayout": 32,
+    "frameDetector": 4,
+    "apiAssertions": 18
+  },
+  "visualReview": {
+    "method": "17 actual 1080p output frames at 0.5–18.3s, including cut boundaries; not continuous playback or listening acceptance.",
+    "correction": "End-shot protection expanded to the raised hand/cup area; automatic planning hides the unsafe end title.",
+    "browser": "Verified existing segment list, role/time/group controls and protection/crop guides; captured annotation-interface.png. Drag/save interaction not exercised in browser; API save validated separately.",
+    "completedFrameReview": true
+  },
+  "build": "passed"
+}
