@@ -1,0 +1,89 @@
+{
+  "template": "real-refined",
+  "props": {
+    "format": "9:16",
+    "productName": "玻璃收纳罐",
+    "mix": "mix-refined.wav",
+    "demo": true,
+    "shots": [
+      {
+        "id": "hook",
+        "seconds": 2,
+        "source": "footage/shelf.mp4",
+        "trimBefore": 7.4,
+        "sourceDuration": 10.466,
+        "kicker": "看得清，才好收。",
+        "headline": "装了什么，\n不用猜。",
+        "caption": "",
+        "position": "50% 50%",
+        "zoom": 1.58,
+        "shiftX": -270,
+        "shiftY": -470
+      },
+      {
+        "id": "clear",
+        "seconds": 3,
+        "source": "footage/shelf.mp4",
+        "trimBefore": 3,
+        "sourceDuration": 10.466,
+        "kicker": "01 / 看清楚",
+        "headline": "透明罐身",
+        "caption": "装了什么，一眼看清。",
+        "position": "50% 50%",
+        "zoom": 1.12,
+        "shiftX": -30,
+        "shiftY": -90,
+        "captionFrom": 0.16,
+        "captionTo": 2.210385487528345
+      },
+      {
+        "id": "sort",
+        "seconds": 3,
+        "source": "footage/counter.mp4",
+        "trimBefore": 6.5,
+        "sourceDuration": 11.1,
+        "kicker": "02 / 分开收",
+        "headline": "咖啡 · 谷物 · 零食",
+        "caption": "咖啡、谷物，分开收好。",
+        "position": "22% 50%",
+        "zoom": 1.04,
+        "shiftX": 0,
+        "shiftY": -20,
+        "captionFrom": 0.16,
+        "captionTo": 2.7942857142857145
+      },
+      {
+        "id": "place",
+        "seconds": 3,
+        "source": "footage/shelf.mp4",
+        "trimBefore": 0.5,
+        "sourceDuration": 10.466,
+        "kicker": "03 / 顺手放",
+        "headline": "常用的，放在顺手处。",
+        "caption": "常用的，放在顺手处。",
+        "position": "50% 50%",
+        "zoom": 1.04,
+        "shiftX": 0,
+        "shiftY": -20,
+        "captionFrom": 0.16,
+        "captionTo": 2.4272562358276644
+      },
+      {
+        "id": "close",
+        "seconds": 4,
+        "source": "footage/shelf.mp4",
+        "trimBefore": 5.7,
+        "sourceDuration": 10.466,
+        "kicker": "留一点秩序给日常",
+        "headline": "玻璃收纳罐",
+        "caption": "玻璃收纳罐，让日常更有序。",
+        "position": "50% 50%",
+        "zoom": 1.12,
+        "shiftX": -35,
+        "shiftY": -90,
+        "captionFrom": 0.16,
+        "captionTo": 2.822312925170068
+      }
+    ]
+  }
+}

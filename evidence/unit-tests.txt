@@ -1,0 +1,21 @@
+
+> product-ad-studio@0.1.0 test
+> node --import tsx --test tests/*.test.ts
+
+✔ three rule concepts preserve five-shot structure and supplied facts (0.543875ms)
+✔ rejects media belonging to a different project (1.751583ms)
+✔ rejects video range exceeding actual source duration (0.181458ms)
+✔ rejects timelines outside 15–25 seconds (0.317834ms)
+✔ revision change makes the previous artifact stale (0.063208ms)
+✔ supports bounded, open and suffix byte ranges (0.425875ms)
+✔ rejects unsatisfiable or multipart ranges (0.06425ms)
+✔ prevents storage traversal outside the local storage root (0.06225ms)
+✔ blocks cross-origin requests against the local workspace (9.892208ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 154.992667

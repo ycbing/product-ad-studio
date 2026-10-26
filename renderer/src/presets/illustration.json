@@ -1,0 +1,53 @@
+{
+  "template": "product-story",
+  "props": {
+    "format": "9:16",
+    "productName": "日常收纳架",
+    "brand": "拾序 · FICTIONAL DEMO",
+    "asset": "product.svg",
+    "demo": true,
+    "voice": "voice-demo.wav",
+    "shots": [
+      {
+        "id": "problem",
+        "seconds": 3,
+        "eyebrow": "01 / 每天的小麻烦",
+        "headline": "做一顿饭，\n先找五遍调料。",
+        "caption": "台面被瓶瓶罐罐占满，做饭也跟着忙乱。",
+        "layout": "problem"
+      },
+      {
+        "id": "tension",
+        "seconds": 4,
+        "eyebrow": "02 / 换一种摆法",
+        "headline": "把常用的东西，\n放回顺手的位置。",
+        "caption": "给常用调料留一个固定的位置。",
+        "layout": "organize"
+      },
+      {
+        "id": "product",
+        "seconds": 4,
+        "eyebrow": "03 / 商品登场",
+        "headline": "一处收纳，\n台面有了秩序。",
+        "caption": "示例商品：日常收纳架。",
+        "layout": "hero"
+      },
+      {
+        "id": "benefits",
+        "seconds": 5,
+        "eyebrow": "04 / 看得见的整理",
+        "headline": "分层摆放。\n常用物品，一眼找到。",
+        "caption": "开放分层设计，按自己的习惯整理。",
+        "layout": "benefits"
+      },
+      {
+        "id": "cta",
+        "seconds": 4,
+        "eyebrow": "05 / 给厨房一点留白",
+        "headline": "从这个小角落，\n开始整理生活。",
+        "caption": "查看商品详情，选择适合你的尺寸。",
+        "layout": "cta"
+      }
+    ]
+  }
+}

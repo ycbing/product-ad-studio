@@ -1,0 +1,18 @@
+{
+  "id": "product-story",
+  "compositionId": "ProductStory",
+  "defaultFormat": "9:16",
+  "formats": {
+    "9:16": {
+      "width": 1080,
+      "height": 1920
+    }
+  },
+  "sample": {
+    "from": 0,
+    "to": 20
+  },
+  "music": {
+    "required": false
+  }
+}

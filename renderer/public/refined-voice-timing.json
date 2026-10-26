@@ -1,0 +1,32 @@
+{
+  "duration": 15,
+  "voice": "macOS Tingting, 185wpm, local demonstration",
+  "music": "Original synthesized composition",
+  "ducking": "phrase-level 0.28 speaking / 0.85 gap, 70ms attack, 300ms release",
+  "captions": [
+    {
+      "id": "clear",
+      "from": 2.16,
+      "to": 4.210385487528345,
+      "text": "装了什么，一眼看清。"
+    },
+    {
+      "id": "sort",
+      "from": 5.16,
+      "to": 7.7942857142857145,
+      "text": "咖啡、谷物，分开收好。"
+    },
+    {
+      "id": "place",
+      "from": 8.16,
+      "to": 10.427256235827665,
+      "text": "常用的，放在顺手处。"
+    },
+    {
+      "id": "close",
+      "from": 11.16,
+      "to": 13.822312925170067,
+      "text": "玻璃收纳罐，让日常更有序。"
+    }
+  ]
+}

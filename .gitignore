@@ -1,0 +1,15 @@
+node_modules/
+.next/
+.local/
+.env*
+!.env.example
+*.tsbuildinfo
+renderer/out/
+renderer/build/
+__pycache__/
+*.py[cod]
+.DS_Store
+*.log
+renderer/public/voice-demo.wav
+renderer/public/voice-real.wav
+renderer/public/mix-refined.wav

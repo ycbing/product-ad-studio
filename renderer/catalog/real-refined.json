@@ -1,0 +1,18 @@
+{
+  "id": "real-refined",
+  "compositionId": "RealRefined",
+  "defaultFormat": "9:16",
+  "formats": {
+    "9:16": {
+      "width": 1080,
+      "height": 1920
+    }
+  },
+  "sample": {
+    "from": 0,
+    "to": 15
+  },
+  "music": {
+    "required": false
+  }
+}

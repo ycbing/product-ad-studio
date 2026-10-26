@@ -1,0 +1,42 @@
+{
+  "name": "product-ad-studio",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "renderer"
+  ],
+  "scripts": {
+    "dev": "node --env-file-if-exists=.env.local scripts/dev.mjs",
+    "dev:web": "next dev --hostname 127.0.0.1 --port 3100",
+    "worker": "node --env-file-if-exists=.env.local --import tsx worker/main.ts",
+    "db:local": "node scripts/local-db.mjs",
+    "db:migrate": "node --env-file-if-exists=.env.local --import tsx scripts/migrate.ts",
+    "db:seed": "node --env-file-if-exists=.env.local --import tsx scripts/seed.ts",
+    "typecheck": "tsc --noEmit",
+    "build": "next build",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "start": "next start --hostname 127.0.0.1 --port 3100",
+    "test:integration": "node --env-file-if-exists=.env.local --import tsx scripts/integration.ts"
+  },
+  "dependencies": {
+    "next": "16.4.3",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "pg": "8.23.1",
+    "sharp": "0.34.5",
+    "zod": "4.6.7",
+    "lucide-react": "^0.468.0"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3",
+    "@types/node": "^24.0.0",
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
+    "@types/pg": "^8.15.0",
+    "tsx": "^4.20.0"
+  },
+  "overrides": {
+    "zod": "4.6.7"
+  }
+}

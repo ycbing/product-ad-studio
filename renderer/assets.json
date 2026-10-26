@@ -1,0 +1,54 @@
+{
+  "assets": [
+    {
+      "id": "product",
+      "file": "product.svg",
+      "source": "Original vector illustration created for this fictional demo",
+      "license": "CC0-1.0",
+      "isRealProduct": false
+    },
+    {
+      "id": "shelf",
+      "file": "footage/shelf.mp4",
+      "source": "https://www.pexels.com/video/8580867/",
+      "download": "https://videos.pexels.com/video-files/8580867/8580867-hd_1080_1920_30fps.mp4",
+      "author": "RDNE Stock project",
+      "license": "Pexels License",
+      "licenseUrl": "https://www.pexels.com/license/",
+      "sha256": "b24f3370724e707ca833deb2b3ae33aa786f11be4150a88edf6afde7e20da454",
+      "isRealFootage": true,
+      "skuVerified": false
+    },
+    {
+      "id": "counter",
+      "file": "footage/counter.mp4",
+      "source": "https://www.pexels.com/video/8580947/",
+      "download": "https://videos.pexels.com/video-files/8580947/8580947-hd_1920_1080_30fps.mp4",
+      "author": "RDNE Stock project",
+      "license": "Pexels License",
+      "licenseUrl": "https://www.pexels.com/license/",
+      "sha256": "f85541e3f2743195567c36ed346c9f92059b4fd399a741350df91f81a39f3ed7",
+      "isRealFootage": true,
+      "skuVerified": false
+    },
+    {
+      "id": "voice-real",
+      "file": "voice-real.wav",
+      "source": "macOS Tingting local system voice; development sample only",
+      "productionLicenseReviewed": false
+    },
+    {
+      "id": "music-real",
+      "file": "music-real.wav",
+      "source": "Original synthesized composition from scripts/demo-music.py",
+      "license": "CC0-1.0"
+    },
+    {
+      "id": "refined-audio",
+      "file": "mix-refined.wav",
+      "source": "Local macOS Tingting speech plus original synthesized composition; scripts/refined-audio.py",
+      "productionVoiceLicenseReviewed": false,
+      "sha256": "c3cb280aca80d7abeabcc34bd0d0f0bede782dea1fe725319e891ef353ccf1a7"
+    }
+  ]
+}

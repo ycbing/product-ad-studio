@@ -1,0 +1,67 @@
+{
+  "template": "real-product",
+  "props": {
+    "format": "9:16",
+    "productName": "玻璃收纳罐",
+    "voice": "voice-real.wav",
+    "music": "music-real.wav",
+    "demo": true,
+    "shots": [
+      {
+        "id": "hook",
+        "seconds": 3,
+        "source": "footage/counter.mp4",
+        "trimBefore": 0,
+        "sourceDuration": 11.1,
+        "kicker": "日常收纳 / KITCHEN STORIES",
+        "headline": "厨房不大，\n东西却不少。",
+        "caption": "厨房不大，东西却不少。",
+        "position": "56% 50%"
+      },
+      {
+        "id": "introduce",
+        "seconds": 4,
+        "source": "footage/shelf.mp4",
+        "trimBefore": 0,
+        "sourceDuration": 10.466,
+        "kicker": "01 / 给食材一个位置",
+        "headline": "常用食材，\n摆得明明白白。",
+        "caption": "把常用的食材，摆得明明白白。",
+        "position": "50% 50%"
+      },
+      {
+        "id": "detail",
+        "seconds": 4,
+        "source": "footage/shelf.mp4",
+        "trimBefore": 5.5,
+        "sourceDuration": 10.466,
+        "kicker": "02 / 看得到的日常",
+        "headline": "装了什么，\n一眼就看到。",
+        "caption": "透明罐身，里面装了什么，一眼就看到。",
+        "position": "78% 50%"
+      },
+      {
+        "id": "use",
+        "seconds": 5,
+        "source": "footage/counter.mp4",
+        "trimBefore": 5.5,
+        "sourceDuration": 11.1,
+        "kicker": "03 / 按自己的习惯整理",
+        "headline": "咖啡、谷物、零食。\n各自有归处。",
+        "caption": "咖啡、谷物和零食，按自己的习惯整理。",
+        "position": "40% 50%"
+      },
+      {
+        "id": "close",
+        "seconds": 4,
+        "source": "footage/shelf.mp4",
+        "trimBefore": 5.7,
+        "sourceDuration": 10.466,
+        "kicker": "玻璃收纳罐 / REAL FOOTAGE",
+        "headline": "把厨房，\n整理成喜欢的样子。",
+        "caption": "挑选适合你家厨房的收纳罐。",
+        "position": "56% 50%"
+      }
+    ]
+  }
+}

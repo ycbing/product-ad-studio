@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "createdAt": "2026-10-26T03:03:18.899Z",
+  "testProjectId": "43fad7de-0f1d-4462-a047-2cbe017105e4",
+  "events": [
+    "fake MIME rejected",
+    "real image and MP4 uploaded with probed metadata",
+    "optimistic revision conflict rejected",
+    "three explicitly marked rule concepts and edited hook saved",
+    "full export blocked before sample approval",
+    "five concurrent requests share exactly one job",
+    "real mixed-image-and-video low-resolution render completed",
+    "current-revision confirmation gate exercised with simulated test-owner acknowledgement",
+    "real 1080p export completed",
+    "video range playback and invalid ranges verified",
+    "editing invalidates old sample approval and blocks export",
+    "deleted project and its files are inaccessible"
+  ]
+}

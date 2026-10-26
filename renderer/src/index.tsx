@@ -1,0 +1,12 @@
+import {RefinedProduct} from './refined-story';
+import {refinedSchema,type RefinedProps} from './refined-schema';
+import refined from './presets/real-refined.json';
+import {registerRoot,Composition} from 'remotion';
+import {ProductStory} from './story';
+import {adSchema,type AdProps} from './schema';
+import {RealProduct} from './real-story';
+import {filmSchema,type FilmProps} from './real-schema';
+import illustration from './presets/illustration.json';
+import film from './presets/real-product.json';
+const Root=()=> <><Composition id="ProductStory" component={ProductStory} width={1080} height={1920} fps={30} durationInFrames={600} schema={adSchema} defaultProps={adSchema.parse(illustration.props)} calculateMetadata={({props}:{props:AdProps})=>({durationInFrames:props.shots.reduce((n,s)=>n+Math.round(s.seconds*30),0)})}/><Composition id="RealProduct" component={RealProduct} width={1080} height={1920} fps={30} durationInFrames={600} schema={filmSchema} defaultProps={filmSchema.parse(film.props)} calculateMetadata={({props}:{props:FilmProps})=>({durationInFrames:props.shots.reduce((n,s)=>n+Math.round(s.seconds*30),0)})}/><Composition id="RealRefined" component={RefinedProduct} width={1080} height={1920} fps={30} durationInFrames={450} schema={refinedSchema} defaultProps={refinedSchema.parse(refined.props)} calculateMetadata={({props}:{props:RefinedProps})=>({durationInFrames:props.shots.reduce((n,s)=>n+Math.round(s.seconds*30),0)})}/></>;
+registerRoot(Root);
